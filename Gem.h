@@ -1,5 +1,6 @@
 #ifndef _GEM_H_
 #define _GEM_H_
+#include "Coordinate.h"
 
 class Gem
 {

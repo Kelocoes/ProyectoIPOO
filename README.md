@@ -1,5 +1,5 @@
-# ProyectIPOO
-Name:
+# ProjectIPOO
+Student's Name: 
 - Kevin David Rodriguez Belalcazar  1841109-3743
 - Lina Marcela Guamanga             1730223-3743
 - Julian Andres Salamanca Tellez    1841654-3743
@@ -7,7 +7,7 @@ Name:
 Professor: Victor Andrés Bucheli
 Professor: Giovanny Hidalgo
 
-Proyecto IPOO THANOS
+THANOS PUZZLE PROJECT
 -----------------------------------------------------------------
-RULES
+RULES: 
 https://drive.google.com/open?id=1Y7QeY135CCarQOAYZ0bstLiG7RBf9pGe

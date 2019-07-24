@@ -11,7 +11,7 @@ public:
   virtual void ShowBoard(); 
   virtual void LoadGame(file); //   Upload a txt file to load a level
   virtual void SaveGame(); //       Save the current progress from the user 
-  virtual void Help(); //           Let you know how to play the game (controls)
+  virtual void Stats(); //          Let you know the score and movements left
 
 protected:
 //

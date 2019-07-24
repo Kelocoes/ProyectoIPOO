@@ -2,13 +2,15 @@
 #define _COORDINATE_H_
 
 class Coordinate
+  // This class let you know the location in the game 
 {
-Public:
+public:
   Coordinate();
   ~Coordinate();
 
-Protected:
+protected:
+  //
 private:
-
+//
 };
 #endif

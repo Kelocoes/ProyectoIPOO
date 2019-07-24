@@ -3,16 +3,16 @@
 
 class Gem
 {
-Public:
+public:
   Gem();
   ~Gem();
-  virtual void Break();
+  virtual void Break(); 
 
-Protected:
+protected:
 private:
 int coordinatex;
 int coordinatey;
-bool mindlock;
+bool mindLock; //     MindGem status
 int Type;
 
 };

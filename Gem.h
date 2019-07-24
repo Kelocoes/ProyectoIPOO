@@ -4,17 +4,17 @@
 
 class Gem
 {
-Public:
+public:
   Gem();
   ~Gem();
-  virtual void Break();
+  virtual void Break();  // This function is used when a gem is deleted. 
 
-Protected:
+protected:
 private:
 int coordinatex;
 int coordinatey;
-bool mindlock;
-int Type;
+bool mindLock; //     MindGem status
+int Type; //          Indicates the kind of gem (there are 6 types of gems)
 
 };
 #endif

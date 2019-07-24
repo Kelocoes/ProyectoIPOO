@@ -13,7 +13,7 @@ private:
 int coordinatex;
 int coordinatey;
 bool mindLock; //     MindGem status
-int Type; //          Indicates the kind of gem (there are 6 gems)
+int Type; //          Indicates the kind of gem (there are 6 types of gems)
 
 };
 #endif

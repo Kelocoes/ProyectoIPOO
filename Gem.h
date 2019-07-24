@@ -7,7 +7,7 @@ class Gem
 public:
   Gem();
   ~Gem();
-  virtual void Break();  // This function is used when a gem is deleted. 
+  virtual void Break();  // This function is used when a gem is deleted.
 
 protected:
 private:

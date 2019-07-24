@@ -13,22 +13,22 @@ Board::~Board()
   //
 }
 
-virtual void Board::SetMatrix(board)
+void Board::SetMatrix(board)
 {
 
 }
 
-virtual void Board::Match(/*Condition*/)
+void Board::Match(/*Condition*/)
 {
 
 }
 
-virtual void Board::Fill(/*Condition*/)
+void Board::Fill(/*Condition*/)
 {
 
 }
 
-virtual void Board::Move(/*Condition*/)
+void Board::Move(/*Condition*/)
 {
-  
+
 }

@@ -13,7 +13,7 @@ Gem::~Gem()
   //
 }
 
-virtual void Break()
+void Break()
 {
  // 
 }

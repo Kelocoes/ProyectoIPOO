@@ -1,7 +1,7 @@
 #ifndef _BOARD_H_
 #define _BOARD_H_
 #include "Gem.h"
-
+// Ascii squence escape
 class Board
 {
 public:
@@ -14,7 +14,6 @@ public:
   virtual void Move(/*Condition*/);//Movement of the gems
 
 protected:
-// I'll Use a board with integers
 gem* board[7][7];
 private:
 

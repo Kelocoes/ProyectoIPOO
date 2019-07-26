@@ -15,7 +15,7 @@ public:
 
 protected:
 // I'll Use a board with integers
-int *board [6][6];
+gem* board[6][6];
 private:
 
 };

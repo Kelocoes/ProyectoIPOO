@@ -16,7 +16,7 @@ Compiling the game:
 ##########################################################################
 1. Run the next command once located in the folder where the game files are
 ##########################################################################
-  g++ main.cpp Menu.cpp Board.cpp Gem.cpp -o Tanos
+g++ main.cpp Menu.cpp Board.cpp Gem.cpp -o Tanos
 ########################################################################## 
 2. That will create a .exe file with which you can open the game located in
 the same folder where the game files are

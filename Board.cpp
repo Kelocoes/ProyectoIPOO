@@ -4,16 +4,23 @@ using namespace std;
 #include "Board.h"
 #include <time.h> // We need this library to use rand()
 
-Board::Board()
-{
+Board::Board(){
     MindGem=0;
     SpaceGem=0;
     RealityGem=0;
     TimeGem=0;
     SoulGem=0;
     PowerGem=0;
+    
+  ifstream archivo("archivo.txt");
+  int nivel;
+  int tiempo;
 
+  archivo>>nivel>>tiempo;
+  cout<<"Nivel: "<<nivel<<endl;
+  cout<<"Tiempo del juego: "<<tiempo<<" seg\n";
 }
+
 Board::~Board()
 {
 

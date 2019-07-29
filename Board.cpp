@@ -43,10 +43,10 @@ for (int y=0;y<7;y++)
 
 void Board::ShowBoard()
 {
-int fila=1;
+int fila=0;
 
   cout <<"    "<<"-----------------------"<<endl;
-  cout <<"    "<<"|  1  2  3  4  5  6  7 |"<<endl;
+  cout <<" XY "<<"|  0  1  2  3  4  5  6 |"<<endl;
   cout <<"    "<<"-----------------------"<<endl;
 
 
@@ -99,10 +99,10 @@ void Board::CountGem()
     }
   }
 
-  cout << "\n SpaceGems: " << SpaceGem << "|| ";
-  cout << "RealityGems: " << RealityGem << "|| ";
-  cout << "PowerGems: " << PowerGem << "|| ";
-  cout << "TimeGems: " << TimeGem << "|| ";
-  cout << "SoulGems: " << SoulGem << "|| ";
-  cout << "MindGems: " << MindGem << "|| ";
+  cout << "\n1. SpaceGems: " << SpaceGem << "|| ";
+  cout << "2. RealityGems: " << RealityGem << "|| ";
+  cout << "3. PowerGems: " << PowerGem << "|| " << endl;
+  cout << "4. TimeGems: " << TimeGem << "|| ";
+  cout << "5. SoulGems: " << SoulGem << "|| ";
+  cout << "6. MindGems: " << MindGem << "|| ";
 }

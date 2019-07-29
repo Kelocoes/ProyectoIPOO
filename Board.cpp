@@ -17,7 +17,7 @@ Board::Board()
 Board::~Board()
 {
 
-  //
+  //Esto es una prueba
 }
 
 void Board::Create()

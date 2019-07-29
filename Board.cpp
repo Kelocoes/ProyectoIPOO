@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
 #include <stdlib.h>
 #include "Board.h"
@@ -24,28 +26,21 @@ Board::Board(){
 Board::~Board()
 {
 
-  //Esto es una prueba
 }
 
-void Board::Create()
-{
+void Board::Create(){
 
   srand (time(NULL));//New random integer that depends on PC time
-for (int y=0;y<7;y++)
-{
-  for (int x=0;x<7;x++)
-  {
-    if (rand()%100<5)
-      {
-        Table[x][y]=new Gem(6);
-        Table[x][y]->Lock();
-      }else
-      Table[x][y]=new Gem((rand()%5)+1);//Fill the matrix with new objects that differs from
+  for (int y=0;y<7;y++){
+      for (int x=0;x<7;x++){
+          if (rand()%100<5){
+              Table[x][y]=new Gem(6);
+              Table[x][y]->Lock();
+          } else
+            Table[x][y]=new Gem((rand()%5)+1);//Fill the matrix with new objects that differs from
       //each other by a number
+      }
   }
-}
-
-
 }
 
 void Board::ShowBoard()

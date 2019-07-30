@@ -12,7 +12,7 @@
   ############################################################################
    Compiling the game:
   ############################################################################
-   ONLY ON WINDOWS: Run the next command once located in the folder where the game files are
+   ONLY ON WINDOWS: Run the next command in cmd once located in the folder where the game files are
   #############################################################################
    g++ main.cpp Menu.cpp Board.cpp Gem.cpp -o Thanos
   #############################################################################

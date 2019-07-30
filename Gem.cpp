@@ -5,21 +5,31 @@ using namespace std;
 
 Gem::Gem(int id)
 {
-  Type = id;
-  mindLock = false;
+  Type = id; // Number that let you use the gem. 
+  mindLock = false; // It starts at false. It starts unlocked. 
 }
 
 Gem::~Gem()
 {
-
+  //
 }
 
 int Gem::getType()
 {
-  return Type;
+  return Type; // Returns the number of gem, in this case: 
+
+  /*
+  1 = SpaceGem
+  2 = RealityGem
+  3 = PowerGem
+  4 = TimeGem
+  5 = SoulGem
+  6 = MindGem 
+  */
+
 }
 
 void Gem::Lock()
 {
-  mindLock = true;
+  mindLock = true; // This lock Gem Status
 }

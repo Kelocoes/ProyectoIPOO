@@ -9,7 +9,7 @@ public:
   ~Board();
    void SetMatrix();
    void Match(/*Condition*/);//Abstraction and //Need a verifier of where the match is happening
-   void fill(/*Condition*/);//Where is a void on the matrix
+   void fill(/*Condition*/);//When there is a void on the matrix
    void Move(/*Condition*/);//Movement of the gems
    void Create();
    void ShowBoard();
@@ -20,6 +20,7 @@ protected:
 private:
   Gem* Table[7][7];//Pointers Pointing to gem objets
   //
+  // Each gem is clasified by a number. We can recognise the gems by: 
   int SpaceGem;//1
   int RealityGem;//2
   int PowerGem;//3

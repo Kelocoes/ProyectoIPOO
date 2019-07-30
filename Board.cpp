@@ -34,7 +34,7 @@ void Board::Create(){
   for (int y=0;y<7;y++){
       for (int x=0;x<7;x++){
           if (rand()%100<5){
-              Table[x][y]=new Gem(6);
+              Table[x][y]=new Gem(6); // Creates a gem
               Table[x][y]->Lock();
           } else
             Table[x][y]=new Gem((rand()%5)+1);//Fill the matrix with new objects that differs from
@@ -45,7 +45,7 @@ void Board::Create(){
 
 void Board::ShowBoard()
 {
-int fila=0;
+int fila=0; // This variable helps to print each line
 
   cout <<"           "<<"------------------------"<<endl;
   cout <<"           "<<"|  0  1  2  3  4  5  6 |"<<endl;
@@ -58,21 +58,24 @@ int fila=0;
     fila++;
     for (int x=0;x<7;x++)
     {
-      cout << Table[x][y]->getType()<<"  ";//Get the Type of each gem and print it on the screen
+      cout << Table[x][y]->getType()<<"  ";//Get the Type of each gem and print it on the screen (Number)
     }
     cout << endl;
   }
-  CountGem();
+  CountGem(); // When the matrix is printed we are gonna 
+  // count how much type of gems are. 
 }
 
 
-void Board::CountGem()
+void Board::CountGem() // Here we define the Gem Counter
 {
-  for (int y=0;y<7;y++)
+  for (int y=0;y<7;y++) // It cross through all the line to see
+  // what king of gems are here. 
   {
     for (int x=0;x<7;x++)
     {
-      switch (Table[x][y]->getType())
+      switch (Table[x][y]->getType()) // It finds the Gem type and 
+                              // for each position. 
       {
         case 1:
         SpaceGem++;
@@ -101,6 +104,7 @@ void Board::CountGem()
     }
   }
 
+// Here we are printing the number of gems per type. 
   cout << "\n1. SpaceGems: " << SpaceGem << "|| ";
   cout << "2. RealityGems: " << RealityGem << "|| ";
   cout << "3. PowerGems: " << PowerGem << "|| " << endl;

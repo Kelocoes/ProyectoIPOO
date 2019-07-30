@@ -9,15 +9,15 @@ class Gem
 public:
   Gem(int ident);
   ~Gem();
-  int getType();
+  int getType(); 
   void setType();
   void Break();  // This function is used when a gem is deleted.
-  void Lock();
+  void Lock(); // Changes mindLock attribute
 
 protected:
 private:
 
-bool mindLock; //     MindGem status
+bool mindLock; //     MindGem status (if its available to use)
 int Type; //          Indicates the kind of gem (there are 6 types of gems)
 
 };

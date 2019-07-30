@@ -10,7 +10,7 @@ class Menu
 public:
   Menu();
   ~Menu();
-  // Here we are defining functions from class called Menu
+  // definingare defining functions from class called Menu
   // We gotta use virtual to work with polymorphism
   void NewGame(Board Table);//Create a new matrix with different gem types
   void LoadGame(); //Upload a txt file to load a level

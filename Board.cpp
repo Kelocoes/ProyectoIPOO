@@ -19,8 +19,8 @@ Board::Board(){
   int tiempo;
 
   archivo>>nivel>>tiempo;
-  cout<<"Nivel: "<<nivel<<endl;
-  cout<<"Tiempo del juego: "<<tiempo<<" seg\n";
+  cout<<"Level:  "<<nivel<<endl;
+  cout<<"Time:  "<<tiempo<<" seg\n";
 }
 
 Board::~Board()
@@ -111,4 +111,121 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "4. TimeGems: " << TimeGem << "|| ";
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
+  cout << endl; 
+  /*
+  cout << "Just to see if u can move a gem" << endl; 
+  canThey(); 
+  */
 }
+
+/* Está comentado porque aun funciona con errores. Este metodo nos permite
+ver todos los posibles movimientos de la gema seleccionada, asignando valores
+booleanos a cada caso que son: 
+case1 = para moverse arriba
+case2 = para moverse abajo
+case3 = moverse izq 
+case4 = moverse der
+
+---
+
+void Board::canThey()
+{
+  cout << "Insert location: " << endl;
+  
+  cout << " || 1st space line || 2nd space column ||" << endl; 
+  cin >> locX >> locY; 
+  int cases; 
+  // In cycles we use this to see if we can move around the board. 
+  
+
+  for (cases = 0; cases<4; cases++)
+  {
+    switch (cases)
+    {
+      case(0) : {
+      if (locY--<0)
+      {
+        case1 = false; 
+      }
+      else 
+      {
+        if (Table[locX][locY]->getType() == Table[locX][locY--]->getType())
+        {
+          case1 = true;
+        }
+        else case1 = false; 
+      }
+      break; 
+    }
+
+      case(1) : {
+        if (locY++<6)
+      {
+        case2 = false; 
+      }
+      else 
+      {
+        if (Table[locX][locY]->getType() == Table[locX][locY++]->getType())
+        {
+          case2 = true;
+        }
+        else case2 = false; 
+        
+      }
+      break; 
+      }
+
+      case(2) : {
+        if (locX-- <0)
+        {
+          case3 = false;
+        }
+        else 
+        {
+          if (Table[locX][locY]->getType() == Table[locX--][locY]->getType())
+          {
+            case3 = true; 
+          }
+          else case3 = false; 
+        }
+        break; 
+      }
+
+      case(3) : {
+        if (locX++ > 6)
+        {
+          case4 = false;
+        }
+        else 
+        {
+          if (Table[locX][locY]->getType() == Table[locX++][locY]->getType())
+          {
+            case4 = true; 
+          }
+          else case4 = false; 
+        }
+        break; 
+      }
+    
+    }
+  }
+  
+  if (case1 == true)
+  {
+    cout << "You can move it up" << endl; 
+  }
+  if (case2 == true)
+  {
+    cout << "You can move it down" << endl; 
+  }
+  if (case3 == true)
+  {
+    cout << "You can move it left" << endl;
+  }
+  if (case4 == true)
+  {
+    cout << "You can move it right" << endl;  
+  } 
+
+}
+*/

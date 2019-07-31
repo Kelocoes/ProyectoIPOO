@@ -112,21 +112,21 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
   cout << endl; 
-  /*
+  
   cout << "Just to see if u can move a gem" << endl; 
   canThey(); 
-  */
+  
 }
 
-/* Está comentado porque aun funciona con errores. Este metodo nos permite
-ver todos los posibles movimientos de la gema seleccionada, asignando valores
-booleanos a cada caso que son: 
+/* 
+Cree cases para cada caso de la gema
 case1 = para moverse arriba
 case2 = para moverse abajo
 case3 = moverse izq 
 case4 = moverse der
 
 ---
+*/
 
 void Board::canThey()
 {
@@ -135,97 +135,130 @@ void Board::canThey()
   cout << " || 1st space line || 2nd space column ||" << endl; 
   cin >> locX >> locY; 
   int cases; 
-  // In cycles we use this to see if we can move around the board. 
   
-
-  for (cases = 0; cases<4; cases++)
+for(cases = 0; cases<4; cases++)
+{
+  switch(cases)
   {
-    switch (cases)
-    {
-      case(0) : {
-      if (locY--<0)
+    case 0 : { // Possible Matchs up the gem 
+    
+      if (locY-2<0)
       {
         case1 = false; 
       }
-      else 
+      else
       {
-        if (Table[locX][locY]->getType() == Table[locX][locY--]->getType())
+      
+        int aux = Table[locX][locY-1]->getType();
+        if (
+          (aux == Table[locX][locY-2]->getType()) || // Is it up?
+          (aux == Table[locX+1][locY-1]->getType()) || // Is it left?
+          (aux == Table[locX-1][locY-1]->getType()) )// Is it right?
+          {
+          case1 = true; 
+          }
+        else 
         {
-          case1 = true;
+          case1 = false;
         }
-        else case1 = false; 
-      }
-      break; 
+        }
+        break;
     }
+        
+       
 
-      case(1) : {
-        if (locY++<6)
+    case 1 : { // Possible Matchs down the gem
+    
+      if (locY+2>7)
       {
         case2 = false; 
       }
-      else 
+      else
       {
-        if (Table[locX][locY]->getType() == Table[locX][locY++]->getType())
-        {
-          case2 = true;
-        }
-        else case2 = false; 
         
-      }
-      break; 
-      }
-
-      case(2) : {
-        if (locX-- <0)
-        {
-          case3 = false;
-        }
+        int aux = Table[locX][locY+1]->getType(); 
+        if (
+          (aux == Table[locX][locY+2]->getType()) || // Is it down?
+          (aux == Table[locX+1][locY+1]->getType()) || // Is it left?
+          (aux == Table[locX-1][locY+1]->getType()) )// Is it right?
+          {
+            case2 = true; 
+          }
         else 
         {
-          if (Table[locX][locY]->getType() == Table[locX--][locY]->getType())
-          {
-            case3 = true; 
-          }
-          else case3 = false; 
-        }
-        break; 
+          case2 = false; 
+        } 
       }
+    break; 
+    }
 
-      case(3) : {
-        if (locX++ > 6)
+    case 2 : { // Possible Matchs left the gem
+    
+    if (locX+2>7)
+    {
+      case3 = false; 
+    }
+    else 
+    {
+      
+      int aux = Table[locX+1][locY]->getType(); 
+      if(
+        (aux == Table[locX+1][locY+1]->getType()) || // Is it down?
+        (aux == Table[locX+2][locY]->getType()) || // Is it left?
+        (aux == Table[locX+1][locY-1]->getType()) ) // Is it up?
+        {
+        case3 = true; 
+        }
+      else {
+        case3 = false; 
+      }
+    }
+    break; 
+    }
+
+    case 3 : { // Possible Matchs right to the Gem
+    
+      if (locX-2<0)
+      {
+        case4 = false;
+      }
+      else 
+      {
+      
+        int aux = Table[locX-1][locY]->getType();
+        if (
+        (aux == Table[locX-1][locY+1]->getType()) || // Is it down?
+        (aux == Table[locX-2][locY]->getType()) || // Is it right?
+        (aux == Table[locX-1][locY-1]->getType()) ) // Is it up?
+        {
+          case4 = true; 
+        }
+        else 
         {
           case4 = false;
         }
-        else 
-        {
-          if (Table[locX][locY]->getType() == Table[locX++][locY]->getType())
-          {
-            case4 = true; 
-          }
-          else case4 = false; 
-        }
-        break; 
       }
-    
+    break; 
     }
   }
-  
-  if (case1 == true)
-  {
-    cout << "You can move it up" << endl; 
-  }
-  if (case2 == true)
-  {
-    cout << "You can move it down" << endl; 
-  }
-  if (case3 == true)
-  {
-    cout << "You can move it left" << endl;
-  }
-  if (case4 == true)
-  {
-    cout << "You can move it right" << endl;  
-  } 
+}
+
+cout << "You can do these movements" << endl; 
+if (case1 == true)
+{
+  cout << "Move it up" << endl; 
+}
+if (case2 == true)
+{
+  cout << "Move it down" << endl; 
+}
+if (case3 == true)
+{
+  cout << "Move it left" << endl;
+}
+if (case4 == true)
+{
+  cout << "Move it right" << endl; 
+}
 
 }
-*/

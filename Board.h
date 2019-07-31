@@ -11,7 +11,8 @@ public:
    void Match(/*Condition*/);//Abstraction and //Need a verifier of where the match is happening
    void fill(/*Condition*/);//When there is a void on the matrix
    void Move(/*Condition*/);//Movement of the gems
-   void canThey(); 
+   void canThey(); // It defines if u can do the movement or not. 
+   // Helps to change cases and move the gems
    void Create();
    void ShowBoard();
    void CountGem();

@@ -64,6 +64,9 @@ int fila=0; // This variable helps to print each line
   }
   CountGem(); // When the matrix is printed we are gonna 
   // count how much type of gems are. 
+  Move(); // Move
+  cout << endl; 
+  ShowBoard(); // Repeat it  
 }
 
 
@@ -113,152 +116,208 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "6. MindGems: " << MindGem << "|| ";
   cout << endl; 
   
-  cout << "Just to see if u can move a gem" << endl; 
-  canThey(); 
-  
 }
 
-/* 
-Cree cases para cada caso de la gema
-case1 = para moverse arriba
-case2 = para moverse abajo
-case3 = moverse izq 
-case4 = moverse der
-
----
-*/
-
-void Board::canThey()
+void Board::Move()
 {
-  cout << "Insert location: " << endl;
-  
-  cout << " || 1st space line || 2nd space column ||" << endl; 
-  cin >> locX >> locY; 
-  int cases; 
-  
-for(cases = 0; cases<4; cases++)
-{
-  switch(cases)
+  cout << endl;
+  cout << "Let's move. You have to type: || " << endl; 
+  cout << "|| 1st Line Number || 2nd Column Number || 3st Direction " << endl;
+  cin >> locX >> locY >> dir; 
+
+  switch(dir)
   {
-    case 0 : { // Possible Matchs up the gem 
-    
-      if (locY-2<0)
+    int aux, aux1;  
+    case 'U' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locY-1<0)
       {
-        case1 = false; 
-      }
-      else
-      {
-      
-        int aux = Table[locX][locY-1]->getType();
-        if (
-          (aux == Table[locX][locY-2]->getType()) || // Is it up?
-          (aux == Table[locX+1][locY-1]->getType()) || // Is it left?
-          (aux == Table[locX-1][locY-1]->getType()) )// Is it right?
-          {
-          case1 = true; 
-          }
-        else 
-        {
-          case1 = false;
-        }
-        }
-        break;
-    }
-        
-       
-
-    case 1 : { // Possible Matchs down the gem
-    
-      if (locY+2>7)
-      {
-        case2 = false; 
-      }
-      else
-      {
-        
-        int aux = Table[locX][locY+1]->getType(); 
-        if (
-          (aux == Table[locX][locY+2]->getType()) || // Is it down?
-          (aux == Table[locX+1][locY+1]->getType()) || // Is it left?
-          (aux == Table[locX-1][locY+1]->getType()) )// Is it right?
-          {
-            case2 = true; 
-          }
-        else 
-        {
-          case2 = false; 
-        } 
-      }
-    break; 
-    }
-
-    case 2 : { // Possible Matchs left the gem
-    
-    if (locX+2>7)
-    {
-      case3 = false; 
-    }
-    else 
-    {
-      
-      int aux = Table[locX+1][locY]->getType(); 
-      if(
-        (aux == Table[locX+1][locY+1]->getType()) || // Is it down?
-        (aux == Table[locX+2][locY]->getType()) || // Is it left?
-        (aux == Table[locX+1][locY-1]->getType()) ) // Is it up?
-        {
-        case3 = true; 
-        }
-      else {
-        case3 = false; 
-      }
-    }
-    break; 
-    }
-
-    case 3 : { // Possible Matchs right to the Gem
-    
-      if (locX-2<0)
-      {
-        case4 = false;
+        cout << error; 
+        Move(); 
       }
       else 
       {
-      
-        int aux = Table[locX-1][locY]->getType();
-        if (
-        (aux == Table[locX-1][locY+1]->getType()) || // Is it down?
-        (aux == Table[locX-2][locY]->getType()) || // Is it right?
-        (aux == Table[locX-1][locY-1]->getType()) ) // Is it up?
+        aux = Table[locX][locY]->getType(); 
+        if (locY-1==0)
         {
-          case4 = true; 
+          if ( aux == Table[locX+1][locY-1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() )
+               {
+             Gem* almacena; 
+             Table[locX][locY] = almacena; 
+             Table[locX][locY] = Table[locX][locY-1];
+             Table[locX][locY-1] = almacena; 
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
         }
-        else 
+        else {
+          if ( aux == Table[locX+1][locY-1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX][locY-2]->getType() )
+          {
+            Gem* almacena; 
+            Table[locX][locY] = almacena; 
+            Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = almacena;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
+      }
+    break;  
+    }
+
+    case 'D' : {
+      // FALTA PARA CUANDO ESTEN EN BORDES ME OLVIDE DE ESA POSIBILIDAD
+      string error; 
+      error = "Movement Failure"; 
+      if (locY+1>6)
+      {
+        cout << error; 
+        Move(); 
+      }
+      else 
+      {
+        aux = Table[locX][locY]->getType(); 
+        if (locY+1==6)
         {
-          case4 = false;
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX-1][locY+1]->getType() )
+               {
+             Gem* almacena; 
+             Table[locX][locY] = almacena; 
+             Table[locX][locY] = Table[locX][locY+1];
+             Table[locX][locY+1] = almacena; 
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        else {
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX][locY+2]->getType() )
+          {
+            Gem* almacena; 
+            Table[locX][locY] = almacena; 
+            Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = almacena;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
         }
       }
     break; 
     }
-  }
-}
 
-cout << "You can do these movements" << endl; 
-if (case1 == true)
-{
-  cout << "Move it up" << endl; 
-}
-if (case2 == true)
-{
-  cout << "Move it down" << endl; 
-}
-if (case3 == true)
-{
-  cout << "Move it left" << endl;
-}
-if (case4 == true)
-{
-  cout << "Move it right" << endl; 
-}
+    case 'R' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locX-1<0)
+      { /// BNTSDOFJSDOFKSOKF NOTA: FALTA PARA ARRIBA Y ABAJO DE SER EL CASO
+        cout << error; 
+        Move(); 
+      }
+      else 
+      {
+        aux = Table[locX][locY]->getType(); 
+        if (locX-1==0)
+        {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() )
+               {
+             Gem* almacena; 
+             Table[locX][locY] = almacena; 
+             Table[locX][locY] = Table[locX-1][locY];
+             Table[locX-1][locY] = almacena; 
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        else {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX-2][locY]->getType() )
+          {
+            Gem* almacena; 
+            Table[locX][locY] = almacena; 
+            Table[locX][locY] = Table[locX-1][locY];
+            Table[locX-1][locY] = almacena;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
+      }
+    break; 
+    }
+
+    case 'L' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locX+1>6)
+      { 
+        cout << error; 
+        Move(); 
+      }
+      else 
+      {
+        aux = Table[locX][locY]->getType(); 
+        if (locX+1==6)
+        {
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX+1][locY-1]->getType() )
+               {
+             Gem* almacena; 
+             Table[locX][locY] = almacena; 
+             Table[locX][locY] = Table[locX+1][locY];
+             Table[locX+1][locY] = almacena; 
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        else {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX-2][locY]->getType() )
+          {
+            Gem* almacena; 
+            Table[locX][locY] = almacena; 
+            Table[locX][locY] = Table[locX+1][locY];
+            Table[locX+1][locY] = almacena;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
+      }
+    break; 
+
+    }
+    default : {
+      cout << "Direction failure. Try again " << endl; 
+      Move(); 
+      break; 
+    }
+  }
 
 }

@@ -64,6 +64,9 @@ int fila=0; // This variable helps to print each line
   }
   CountGem(); // When the matrix is printed we are gonna 
   // count how much type of gems are. 
+  Move(); // Move
+  cout << endl; 
+  ShowBoard(); // Repeat it  
 }
 
 
@@ -112,120 +115,201 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
   cout << endl; 
-  /*
-  cout << "Just to see if u can move a gem" << endl; 
-  canThey(); 
-  */
+  
 }
 
-/* Está comentado porque aun funciona con errores. Este metodo nos permite
-ver todos los posibles movimientos de la gema seleccionada, asignando valores
-booleanos a cada caso que son: 
-case1 = para moverse arriba
-case2 = para moverse abajo
-case3 = moverse izq 
-case4 = moverse der
-
----
-
-void Board::canThey()
+void Board::Move()
 {
-  cout << "Insert location: " << endl;
-  
-  cout << " || 1st space line || 2nd space column ||" << endl; 
-  cin >> locX >> locY; 
-  int cases; 
-  // In cycles we use this to see if we can move around the board. 
-  
+  cout << endl;
+  cout << "Let's move. You have to type: || " << endl; 
+  cout << "|| 1st Line Number || 2nd Column Number || 3st Direction " << endl;
+  cin >> locX >> locY >> dir; 
 
-  for (cases = 0; cases<4; cases++)
+  switch(dir)
   {
-    switch (cases)
-    {
-      case(0) : {
-      if (locY--<0)
+    int aux, aux1;  
+    case 'U' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locY-1<0)
       {
-        case1 = false; 
+        cout << error; 
+        Move(); 
       }
       else 
       {
-        if (Table[locX][locY]->getType() == Table[locX][locY--]->getType())
+        aux = Table[locX][locY]->getType(); 
+        if (locY-1==0)
         {
-          case1 = true;
+          if ( aux == Table[locX+1][locY-1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() )
+               {
+             Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = Location;  
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
         }
-        else case1 = false; 
+        else {
+          if ( aux == Table[locX+1][locY-1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX][locY-2]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = Location; 
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
       }
-      break; 
+    break;  
     }
 
-      case(1) : {
-        if (locY++<6)
+    case 'D' : {
+      
+      string error; 
+      error = "Movement Failure"; 
+      if (locY+1>6)
       {
-        case2 = false; 
+        cout << error; 
+        Move(); 
       }
       else 
       {
-        if (Table[locX][locY]->getType() == Table[locX][locY++]->getType())
+        aux = Table[locX][locY]->getType(); 
+        if (locY+1==6)
         {
-          case2 = true;
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX-1][locY+1]->getType() )
+               {
+             Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = Location;  
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
         }
-        else case2 = false; 
-        
+        else {
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX][locY+2]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = Location;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
       }
+    break; 
+    }
+
+    case 'R' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locX-1<0)
+      { /// BNTSDOFJSDOFKSOKF NOTA: FALTA PARA ARRIBA Y ABAJO DE SER EL CASO
+        cout << error; 
+        Move(); 
+      }
+      else 
+      {
+        aux = Table[locX][locY]->getType(); 
+        if (locX-1==0)
+        {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() )
+               {
+             Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX-1][locY];
+             Table[locX-1][locY] = Location;   
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        else {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX-2][locY]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX-1][locY];
+             Table[locX-1][locY] = Location;  
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
+      }
+    break; 
+    }
+
+    case 'L' : {
+      string error; 
+      error = "Movement Failure"; 
+      if (locX+1>6)
+      { 
+        cout << error; 
+        Move(); 
+      }
+      else 
+      {
+        aux = Table[locX][locY]->getType(); 
+        if (locX+1==6)
+        {
+          if ( aux == Table[locX+1][locY+1]->getType() ||
+               aux == Table[locX+1][locY-1]->getType() )
+               {
+             Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX+1][locY];
+             Table[locX+1][locY] = Location;  
+               }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        else {
+          if ( aux == Table[locX-1][locY+1]->getType() ||
+               aux == Table[locX-1][locY-1]->getType() ||
+               aux == Table[locX-2][locY]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+             Table[locX][locY] = Table[locX+1][locY];
+             Table[locX+1][locY] = Location;   
+          }
+          else {
+            cout << error; 
+            Move(); 
+          }
+        }
+      }
+    break; 
+
+    }
+    default : {
+      cout << "Direction failure. Try again " << endl; 
+      Move(); 
       break; 
-      }
-
-      case(2) : {
-        if (locX-- <0)
-        {
-          case3 = false;
-        }
-        else 
-        {
-          if (Table[locX][locY]->getType() == Table[locX--][locY]->getType())
-          {
-            case3 = true; 
-          }
-          else case3 = false; 
-        }
-        break; 
-      }
-
-      case(3) : {
-        if (locX++ > 6)
-        {
-          case4 = false;
-        }
-        else 
-        {
-          if (Table[locX][locY]->getType() == Table[locX++][locY]->getType())
-          {
-            case4 = true; 
-          }
-          else case4 = false; 
-        }
-        break; 
-      }
-    
     }
   }
-  
-  if (case1 == true)
-  {
-    cout << "You can move it up" << endl; 
-  }
-  if (case2 == true)
-  {
-    cout << "You can move it down" << endl; 
-  }
-  if (case3 == true)
-  {
-    cout << "You can move it left" << endl;
-  }
-  if (case4 == true)
-  {
-    cout << "You can move it right" << endl;  
-  } 
 
 }
-*/

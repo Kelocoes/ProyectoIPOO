@@ -8,10 +8,17 @@ public:
   Board();
   ~Board();
    void SetMatrix();
-   void Match(/*Condition*/);//Abstraction and //Need a verifier of where the match is happening
+   void Match(bool option, int locX, int locY);//Abstraction and //Need a verifier of where the match is happening
    void fill(/*Condition*/);//When there is a void on the matrix
-   void Move(/*Condition*/);//Movement of the gems
-   void canThey(); 
+   void Move();//Movement of the gems
+  
+   int locX, locY; 
+   char dir; 
+  // locX -> X location locY -> Y location dir -> direction 
+   // UP -> U
+   // DOWN -> D
+   // RIGHT -> R
+   // LEFT -> L
    void Create();
    void ShowBoard();
    void CountGem();
@@ -19,12 +26,10 @@ public:
 protected:
 // I'll Use a board with integers
 private:
-// Locations to move around the board: 
-  int locX; 
-  int locY; 
-  // ---
+
+ // ---
   
-  bool case1, case2, case3, case4; 
+  char case1, case2, case3, case4; 
   /* Helps to see the cases to move
   case1 = up
   case2 = down

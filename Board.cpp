@@ -175,7 +175,7 @@ void Board::Move()
     }
 
     case 'D' : {
-      // FALTA PARA CUANDO ESTEN EN BORDES ME OLVIDE DE ESA POSIBILIDAD
+      
       string error; 
       error = "Movement Failure"; 
       if (locY+1>6)

@@ -7,24 +7,17 @@ using namespace std;
 #include <time.h> // We need this library to use rand()
 
 Board::Board(){
-    MindGem=0;
-    SpaceGem=0;
-    RealityGem=0;
-    TimeGem=0;
-    SoulGem=0;
-    PowerGem=0;
-    
-  ifstream archivo("archivo.txt");
-  int nivel;
-  int tiempo;
-
-  archivo>>nivel>>tiempo;
-  cout<<"Level:  "<<nivel<<endl;
-  cout<<"Time:  "<<tiempo<<" seg\n";
+  SpaceGem = 0;
+  RealityGem = 0;
+  PowerGem = 0;
+  TimeGem = 0;
+  SoulGem = 0;
+  MindGem = 0;
 }
 
 Board::~Board()
 {
+
 
 }
 
@@ -62,30 +55,28 @@ int fila=0; // This variable helps to print each line
     }
     cout << endl;
   }
-  CountGem(); // When the matrix is printed we are gonna 
-  // count how much type of gems are. 
-  Move(); // Move
-  cout << endl; 
-  ShowBoard(); // Repeat it  
+  CountGem(); // When the matrix is printed we are gonna
+  // count how much type of gems are.
+
 }
 
 
 void Board::CountGem() // Here we define the Gem Counter
 {
-  SpaceGem = 0; 
-  RealityGem = 0; 
-  PowerGem = 0; 
-  TimeGem = 0; 
-  SoulGem = 0; 
-  MindGem = 0; 
+  SpaceGem = 0;
+  RealityGem = 0;
+  PowerGem = 0;
+  TimeGem = 0;
+  SoulGem = 0;
+  MindGem = 0;
 
   for (int y=0;y<7;y++) // It cross through all the line to see
-  // what king of gems are here. 
+  // what king of gems are here.
   {
     for (int x=0;x<7;x++)
     {
-      switch (Table[x][y]->getType()) // It finds the Gem type and 
-                              // for each position. 
+      switch (Table[x][y]->getType()) // It finds the Gem type and
+                              // for each position.
       {
         case 1:
         SpaceGem++;
@@ -114,38 +105,52 @@ void Board::CountGem() // Here we define the Gem Counter
     }
   }
 
-// Here we are printing the number of gems per type. 
+// Here we are printing the number of gems per type.
   cout << "\n1. SpaceGems: " << SpaceGem << "|| ";
   cout << "2. RealityGems: " << RealityGem << "|| ";
   cout << "3. PowerGems: " << PowerGem << "|| " << endl;
   cout << "4. TimeGems: " << TimeGem << "|| ";
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
-  cout << endl; 
-  
+  cout << endl;
+
 }
 
 void Board::Move()
 {
+  ShowBoard();
+  cout << "Exit the game? 1. Yes 2. Not" << endl;
+  int option;
+  cin >>option;
+  switch (option)
+  {
+    case 1:
+    return;
+    break;
+
+    case 2:
+    break;
+  }
+
   cout << endl;
-  cout << "Let's move. You have to type: || " << endl; 
+  cout << "Let's move. You have to type: || " << endl;
   cout << "|| 1st Line Number || 2nd Column Number || 3st Direction " << endl;
-  cin >> locX >> locY >> dir; 
+  cin >> locX >> locY >> dir;
 
   switch(dir)
   {
-    int aux, aux1;  
+    int aux, aux1;
     case 'U' : { // To move UP -> Status Complete
-      string error; 
-      error = "Movement Failure"; 
+      string error;
+      error = "Movement Failure";
       if (locY-1<0)
       {
-        cout << error; 
-        Move(); 
+        cout << error;
+        Move();
       }
-      else 
+      else
       {
-        aux = Table[locX][locY]->getType(); 
+        aux = Table[locX][locY]->getType();
         if (locY-1==0)
         {
           if ( aux == Table[locX+1][locY-1]->getType() ||
@@ -153,12 +158,13 @@ void Board::Move()
                {
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX][locY-1];
-            Table[locX][locY-1] = Location;  
+            Table[locX][locY-1] = Location;
+            Move();
                }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
         else {
@@ -167,6 +173,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Move();
           }
           else
           if (locX == 0 && ((aux == Table[locX][locY-2]->getType())||(aux == Table[locX+1][locY-1]->getType())))
@@ -174,8 +181,9 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Move();
           }
-          else 
+          else
           {
           {
           if ( aux == Table[locX+1][locY-1]->getType() ||
@@ -184,43 +192,45 @@ void Board::Move()
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
-            Table[locX][locY-1] = Location; 
+            Table[locX][locY-1] = Location;
+            Move();
           }
           else {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
           }
           }
         }
       }
-    break;  
+    break;
     }
 
     case 'D' : { // To move DOWN -> Status COMPLETE
-      string error; 
-      error = "Movement Failure"; 
+      string error;
+      error = "Movement Failure";
       if (locY+1>6)
       {
-        cout << error; 
-        Move(); 
+        cout << error;
+        Move();
       }
-      else 
+      else
       {
-        aux = Table[locX][locY]->getType(); 
-        if (locY+1==6) // It verifies in case there's in line 5 
+        aux = Table[locX][locY]->getType();
+        if (locY+1==6) // It verifies in case there's in line 5
         {
           if ( aux == Table[locX+1][locY+1]->getType() || // Right side
                aux == Table[locX-1][locY+1]->getType() )  // Left Side
                {
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX][locY+1];
-            Table[locX][locY+1] = Location;  
+            Table[locX][locY+1] = Location;
+            Move();
                }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
         else {
@@ -229,6 +239,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY+1];
             Table[locX][locY+1] = Location;
+            Move();
           }
           else
           if (locX == 0 && ((aux == Table[locX][locY+2]->getType())||(aux == Table[locX+1][locY+1]->getType())))// Borders
@@ -236,8 +247,9 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Move();
           }
-          else 
+          else
           {
           { // Other cases to move, around the table
           if ( aux == Table[locX+1][locY+1]->getType() ||
@@ -246,43 +258,45 @@ void Board::Move()
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY+1];
-            Table[locX][locY+1] = Location; 
+            Table[locX][locY+1] = Location;
+            Move();
           }
           else {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
           }
           }
         }
       }
-    break;  
+    break;
     }
-      
+
     case 'R' : { // To move RIGHT -> Status Complete
-      string error; 
-      error = "Movement Failure"; 
-      if (locX+1>6) // It verifies if its at column 6 
+      string error;
+      error = "Movement Failure";
+      if (locX+1>6) // It verifies if its at column 6
       {
         cout << error; // Prints Failure
-        Move(); 
+        Move();
       }
-      else 
+      else
       {
-        aux = Table[locX][locY]->getType(); 
-        if (locX+1==6) // It verifies if its at column 5 
+        aux = Table[locX][locY]->getType();
+        if (locX+1==6) // It verifies if its at column 5
         {
           if ( aux == Table[locX+1][locY+1]->getType() || // Down Side
                aux == Table[locX+1][locY-1]->getType() )   // Up side
                {
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX+1][locY];
-            Table[locX+1][locY] = Location;  
+            Table[locX+1][locY] = Location;
+            Move();
                }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
         else {
@@ -291,6 +305,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Move();
           }
           else
           if (locY == 0 && ((aux == Table[locX+1][locY+1]->getType())||(aux == Table[locX+2][locY]->getType()))) // Borders
@@ -298,8 +313,9 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Move();
           }
-          else 
+          else
           {
           { // Other movements possibilities
           if ( aux == Table[locX+1][locY-1]->getType() ||
@@ -308,30 +324,31 @@ void Board::Move()
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
-            Table[locX+1][locY] = Location; 
+            Table[locX+1][locY] = Location;
+            Move();
           }
           else {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
           }
           }
         }
       }
-    break;  
+    break;
     }
 
     case 'L' : { // To move Left -> Status Complete
-      string error; 
-      error = "Movement Failure"; 
-      if (locX-1<0) // It verifies if its at column 0 
+      string error;
+      error = "Movement Failure";
+      if (locX-1<0) // It verifies if its at column 0
       {
         cout << error; // Prints Failure
-        Move(); 
+        Move();
       }
-      else 
+      else
       {
-        aux = Table[locX][locY]->getType(); 
+        aux = Table[locX][locY]->getType();
         if (locX-1==0) // It verifies if its at column 1
         {
           if ( aux == Table[locX-1][locY+1]->getType() || // Down Side
@@ -339,21 +356,23 @@ void Board::Move()
                {
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX-1][locY];
-            Table[locX-1][locY] = Location;  
+            Table[locX-1][locY] = Location;
+            Move();
                }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
-        
+
         else {
           if (locY == 6 && ((aux == Table[locX-1][locY-1]->getType())||(aux ==Table[locX-2][locY]->getType()))) // Borders
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Move();
           }
           else
           if (locY == 0 && ((aux == Table[locX-1][locY+1]->getType())||(aux == Table[locX-2][locY]->getType()))) // Borders
@@ -361,8 +380,9 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Move();
           }
-          else 
+          else
           {
           { // Other movements possibilities
           if ( aux == Table[locX-1][locY-1]->getType() ||
@@ -371,24 +391,58 @@ void Board::Move()
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
-            Table[locX-1][locY] = Location; 
+            Table[locX-1][locY] = Location;
+            Move();
           }
           else {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
           }
           }
         }
       }
-    break;  
+    break;
     }
 
     default : {
-      cout << "Direction failure. Try again " << endl; 
-      Move(); 
-      break; 
+      cout << "Direction failure. Try again " << endl;
+      Move();
+      break;
     }
   }
 
+}
+
+
+
+////GETTERS
+int Board::getSpaceGem()
+{
+  return SpaceGem;
+}
+
+int Board::getMindGem()
+{
+  return MindGem;
+}
+
+int Board::getRealityGem()
+{
+  return PowerGem;
+}
+
+int Board::getPowerGem()
+{
+  return TimeGem;
+}
+
+int Board::getTimeGem()
+{
+  return SoulGem;
+}
+
+int Board::getSoulGem()
+{
+  return MindGem;
 }

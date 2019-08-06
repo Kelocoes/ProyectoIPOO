@@ -14,7 +14,7 @@ public:
   // We gotta use virtual to work with polymorphism
   void NewGame(Board Table);//Create a new matrix with different gem types
   void LoadGame(); //Upload a txt file to load a level
-  void SaveGame(); //Save the current progress from the user
+  void SaveGame(string namefile,Board table); //Save the current progress from the user
 
 
 protected:

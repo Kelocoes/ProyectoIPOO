@@ -11,10 +11,10 @@ public:
    void Match(Gem* Location, Gem* Location2);//Abstraction and //Need a verifier of where the match is happening
    void fill(/*Condition*/);//When there is a void on the matrix
    void Move();//Movement of the gems
-  
-   int locX, locY; 
-   char dir; 
-  // locX -> X location locY -> Y location dir -> direction 
+
+   int locX, locY;
+   char dir;
+  // locX -> X location locY -> Y location dir -> direction
    // UP -> U
    // DOWN -> D
    // RIGHT -> R
@@ -23,23 +23,32 @@ public:
    void ShowBoard();
    void CountGem();
 
+   //getters
+
+   int getSpaceGem();
+   int getRealityGem();
+   int getPowerGem();
+   int getTimeGem();
+   int getSoulGem();
+   int getMindGem();
+
 protected:
 // I'll Use a board with integers
 private:
 
  // ---
-  
-  char case1, case2, case3, case4; 
+
+  char case1, case2, case3, case4;
   /* Helps to see the cases to move
   case1 = up
   case2 = down
-  case3 = left 
+  case3 = left
   case4 = right
 
   */
   Gem* Table[7][7];//Pointers Pointing to gem objets
   //
-  // Each gem is clasified by a number. We can recognise the gems by: 
+  // Each gem is clasified by a number. We can recognise the gems by:
   int SpaceGem;//1
   int RealityGem;//2
   int PowerGem;//3

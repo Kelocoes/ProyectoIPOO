@@ -13,7 +13,7 @@ cout << "2. Load Game" << endl;
 cout << "3. Exit" << endl;
 
 int option;
-cin >> option; // Insert an option 
+cin >> option; // Insert an option
 
 Menu Start;
 Board Table;
@@ -21,7 +21,9 @@ Board Table;
 switch (option)
   {
     case 1:
-    Start.NewGame(Table); // 
+    Start.NewGame(Table); //
+    cout << "\n Game has been saved" << endl;
+    Start.SaveGame("File.txt",Table);
     cin.get();
     break;
 
@@ -32,7 +34,7 @@ switch (option)
     case 3:
     //
     break;
-    default:cout<< "Opción no válida";
+    default:cout<< "Invalid Option";
     break;
   }
 

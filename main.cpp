@@ -27,11 +27,15 @@ switch (option)
     break;
 
     case 2:
-    //
+  /*  cout << "\n THE GAME HAS BEEN LOADED " << endl;
+    Table.LoadGame("File.txt");
+    Table.Move();
+    Table.SaveGame("File.txt");
+    cin.get();*/
     break;
 
     case 3:
-    //
+    exit(0);
     break;
     default:cout<< "Invalid Option";
     break;

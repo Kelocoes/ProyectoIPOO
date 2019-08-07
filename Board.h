@@ -25,6 +25,7 @@ public:
    void ShowBoard();
    void CountGem();
    void SaveGame(string Route);
+   //void LoadGame(string namefile);
 
 protected:
 // I'll Use a board with integers

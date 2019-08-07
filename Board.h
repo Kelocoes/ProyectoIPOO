@@ -1,6 +1,8 @@
 #ifndef _BOARD_H_
 #define _BOARD_H_
 #include "Gem.h"
+#include <string>
+#include <string.h>
 
 class Board
 {
@@ -22,15 +24,7 @@ public:
    void Create();
    void ShowBoard();
    void CountGem();
-
-   //getters
-
-   int getSpaceGem();
-   int getRealityGem();
-   int getPowerGem();
-   int getTimeGem();
-   int getSoulGem();
-   int getMindGem();
+   void SaveGame(string Route);
 
 protected:
 // I'll Use a board with integers

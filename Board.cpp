@@ -116,10 +116,87 @@ void Board::CountGem() // Here we define the Gem Counter
 
 }
 
+
+void Board::SaveGame(string route)
+{
+  ofstream file;
+  file.open(route.c_str(),ios::out);
+
+  if(file.fail())
+  {
+    cout << "Couldn't open the file "<< endl;
+  }
+
+  SpaceGem = 0;
+  RealityGem = 0;
+  PowerGem = 0;
+  TimeGem = 0;
+  SoulGem = 0;
+  MindGem = 0;
+
+  for (int y=0;y<7;y++) // It cross through all the line to see
+  // what king of gems are here.
+  {
+    for (int x=0;x<7;x++)
+    {
+      switch (Table[x][y]->getType()) // It finds the Gem type and
+                              // for each position.
+      {
+        case 1:
+        SpaceGem++;
+        break;
+
+        case 2:
+        RealityGem++;
+        break;
+
+        case 3:
+        PowerGem++;
+        break;
+
+        case 4:
+        TimeGem++;
+        break;
+
+        case 5:
+        SoulGem++;
+        break;
+
+        case 6:
+        MindGem++;
+        break;
+      }
+    }
+  }
+
+  file << SpaceGem << " ";
+  file << RealityGem << " ";
+  file << PowerGem << " ";
+  file << TimeGem << " ";
+  file << SoulGem << " ";
+  file << MindGem << " ";
+  file << endl;
+
+  for (int y=0;y<7;y++)
+  {
+    for (int x=0;x<7;x++)
+    {
+      file << Table[x][y]->getType() << " ";
+    }
+    file << endl;
+  }
+
+
+  file.close();
+
+}
+
+
+
 void Board::Move()
 {
   ShowBoard();
-  cout << "Exit the game? 1. Yes 2. Not" << endl;
+  cout << " \n Exit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
   switch (option)
@@ -130,11 +207,15 @@ void Board::Move()
 
     case 2:
     break;
+
+    default:cout<< "Invalid Option " << endl;
+    Move();
+    break;
   }
 
   cout << endl;
   cout << "Let's move. You have to type: || " << endl;
-  cout << "|| 1st Line Number || 2nd Column Number || 3st Direction " << endl;
+  cout << "|| 1st Column Number || 2nd Line Number || 3st Direction " << endl;
   cin >> locX >> locY >> dir;
 
   switch(dir)
@@ -142,7 +223,7 @@ void Board::Move()
     int aux, aux1;
     case 'U' : { // To move UP -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure " << endl;
       if (locY-1<0)
       {
         cout << error;
@@ -208,7 +289,7 @@ void Board::Move()
 
     case 'D' : { // To move DOWN -> Status COMPLETE
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure " << endl;
       if (locY+1>6)
       {
         cout << error;
@@ -274,7 +355,7 @@ void Board::Move()
 
     case 'R' : { // To move RIGHT -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure " << endl;
       if (locX+1>6) // It verifies if its at column 6
       {
         cout << error; // Prints Failure
@@ -340,7 +421,7 @@ void Board::Move()
 
     case 'L' : { // To move Left -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure " << endl;
       if (locX-1<0) // It verifies if its at column 0
       {
         cout << error; // Prints Failure
@@ -406,43 +487,10 @@ void Board::Move()
     }
 
     default : {
-      cout << "Direction failure. Try again " << endl;
+      cout << "\n Direction failure. Try again " << endl;
       Move();
       break;
     }
   }
 
-}
-
-
-
-////GETTERS
-int Board::getSpaceGem()
-{
-  return SpaceGem;
-}
-
-int Board::getMindGem()
-{
-  return MindGem;
-}
-
-int Board::getRealityGem()
-{
-  return PowerGem;
-}
-
-int Board::getPowerGem()
-{
-  return TimeGem;
-}
-
-int Board::getTimeGem()
-{
-  return SoulGem;
-}
-
-int Board::getSoulGem()
-{
-  return MindGem;
 }

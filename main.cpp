@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-#include "Menu.h"
 #include "Board.h"
 #include <string.h>
 #define LIMPIAR cout<<"\E[H\E[2J"; // To clean history on console
@@ -15,24 +14,28 @@ cout << "3. Exit" << endl;
 int option;
 cin >> option; // Insert an option
 
-Menu Start;
 Board Table;
 
 switch (option)
   {
     case 1:
-    Start.NewGame(Table); //
-    cout << "\n Game has been saved" << endl;
-    Start.SaveGame("File.txt",Table);
+    Table.Create();
+    Table.Move();
+    Table.SaveGame("File.txt");
+    cout << "The game has been saved" << endl;
     cin.get();
     break;
 
     case 2:
-    //
+  /*  cout << "\n THE GAME HAS BEEN LOADED " << endl;
+    Table.LoadGame("File.txt");
+    Table.Move();
+    Table.SaveGame("File.txt");
+    cin.get();*/
     break;
 
     case 3:
-    //
+    exit(0);
     break;
     default:cout<< "Invalid Option";
     break;

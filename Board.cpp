@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
-#include <fstream>
+#include <fstream>//Files
 using namespace std;
 #include <stdlib.h>
 #include "Board.h"
 #include <time.h> // We need this library to use rand()
 
+
+///////////////////////// BUILDER //////////////////////////////////////
 Board::Board(){
   SpaceGem = 0;
   RealityGem = 0;
@@ -15,12 +17,14 @@ Board::Board(){
   MindGem = 0;
 }
 
+ ///////////////////////// DESTROYER //////////////////////////////////////
 Board::~Board()
 {
 
 
 }
 
+///////////////////////// CREATE THE MATRIX //////////////////////////////////////
 void Board::Create(){
 
   srand (time(NULL));//New random integer that depends on PC time
@@ -36,6 +40,8 @@ void Board::Create(){
   }
 }
 
+
+///////////////////////// SHHOW THE BOARD //////////////////////////////////////
 void Board::ShowBoard()
 {
 int fila=0; // This variable helps to print each line
@@ -61,6 +67,7 @@ int fila=0; // This variable helps to print each line
 }
 
 
+///////////////////////// COUNT THE AMOUNT OF GEMS //////////////////////////////////////
 void Board::CountGem() // Here we define the Gem Counter
 {
   SpaceGem = 0;
@@ -106,7 +113,7 @@ void Board::CountGem() // Here we define the Gem Counter
   }
 
 // Here we are printing the number of gems per type.
-  cout << "\n1. SpaceGems: " << SpaceGem << "|| ";
+  cout << "\n 1. SpaceGems: " << SpaceGem << "|| ";
   cout << "2. RealityGems: " << RealityGem << "|| ";
   cout << "3. PowerGems: " << PowerGem << "|| " << endl;
   cout << "4. TimeGems: " << TimeGem << "|| ";
@@ -116,10 +123,73 @@ void Board::CountGem() // Here we define the Gem Counter
 
 }
 
+///////////////////////// SAVING THE GAME  //////////////////////////////////////
+
+void Board::SaveGame(string route)
+{
+  ofstream file;
+  file.open(route.c_str(),ios::out);//Open the file
+
+  if(file.fail())//If the code can't open the fail -> Show a message
+  {
+    cout << "\n Couldn't open the file "<< endl;
+  }
+
+  for (int y=0;y<7;y++)//Include the matrix of Gems in the txt file
+  {
+    for (int x=0;x<7;x++)
+    {
+      file << Table[x][y]->getType() << " ";
+    }
+    file << endl;
+  }
+
+  file.close();
+}
+
+///////////////////////// LOAD THE GAME  //////////////////////////////////////
+/*
+void Board::LoadGame(string namefile)
+{
+  ifstream file1;
+  file1.open(namefile.c_str(),ios::in);//Open the file
+
+  if(file1.fail())//If the code can't open the fail -> Show a message
+  {
+    cout << "\n Couldn't open the file "<< endl;
+  }
+
+  string text;
+  getline(file1,text);
+
+  for (int y=0;y<7;y++)
+  {
+    getline(file1,text);
+    int travel=0;
+      for (int x=0;x<7;x++)
+      {
+          if (text[travel]==6)
+          {
+              Table[x][y]=new Gem(6); // Creates a gem
+              Table[x][y]->Lock();
+          } else
+            {
+              Table[x][y]=new Gem(text[travel]);//Fill the matrix with new objects that differs from each other by a number
+            }
+            travel+=2;
+      }
+  }
+
+  file1.close();
+}
+
+*/
+///////////////////////// MOVE THE GEMS //////////////////////////////////////
+
 void Board::Move()
 {
   ShowBoard();
-  cout << "Exit the game? 1. Yes 2. Not" << endl;
+  cout << " \n Exit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
   switch (option)
@@ -130,11 +200,15 @@ void Board::Move()
 
     case 2:
     break;
+
+    default:cout<< "Invalid Option " << endl;
+    Move();
+    break;
   }
 
   cout << endl;
   cout << "Let's move. You have to type: || " << endl;
-  cout << "|| 1st Line Number || 2nd Column Number || 3st Direction " << endl;
+  cout << "|| 1st Column Number || 2nd Line Number || 3st Direction " << endl;
   cin >> locX >> locY >> dir;
 
   switch(dir)
@@ -142,7 +216,7 @@ void Board::Move()
     int aux, aux1;
     case 'U' : { // To move UP -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure ";
       if (locY-1<0)
       {
         cout << error;
@@ -205,10 +279,9 @@ void Board::Move()
       }
     break;
     }
-
     case 'D' : { // To move DOWN -> Status COMPLETE
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure ";
       if (locY+1>6)
       {
         cout << error;
@@ -274,7 +347,7 @@ void Board::Move()
 
     case 'R' : { // To move RIGHT -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure ";
       if (locX+1>6) // It verifies if its at column 6
       {
         cout << error; // Prints Failure
@@ -340,7 +413,7 @@ void Board::Move()
 
     case 'L' : { // To move Left -> Status Complete
       string error;
-      error = "Movement Failure";
+      error = " \n Movement Failure ";
       if (locX-1<0) // It verifies if its at column 0
       {
         cout << error; // Prints Failure
@@ -406,13 +479,16 @@ void Board::Move()
     }
 
     default : {
-      cout << "Direction failure. Try again " << endl;
+      cout << "\n Direction failure. Try again " << endl;
       Move();
       break;
     }
   }
 
 }
+
+    
+
 //Metodo para hacer pruebas, cuando terminemos el juego, se elimina 
 /*
 void Board::pruebasTablero(){
@@ -512,36 +588,4 @@ void Board::fill(){
        }
     }
     
-}
-
-//GETTERS
-int Board::getSpaceGem()
-{
-    
-  return SpaceGem;
-}
-
-int Board::getMindGem()
-{
-  return MindGem;
-}
-
-int Board::getRealityGem()
-{
-  return PowerGem;
-}
-
-int Board::getPowerGem()
-{
-  return TimeGem;
-}
-
-int Board::getTimeGem()
-{
-  return SoulGem;
-}
-
-int Board::getSoulGem()
-{
-  return MindGem;
 }

@@ -6,7 +6,6 @@
                    projectFiles="true">
       <itemPath>Board.h</itemPath>
       <itemPath>Gem.h</itemPath>
-      <itemPath>Menu.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -17,8 +16,18 @@
                    projectFiles="true">
       <itemPath>Board.cpp</itemPath>
       <itemPath>Gem.cpp</itemPath>
-      <itemPath>Menu.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -50,10 +59,6 @@
       </item>
       <item path="Gem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Menu.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Menu.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -84,10 +89,6 @@
       <item path="Gem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Gem.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Menu.cpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Menu.h" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

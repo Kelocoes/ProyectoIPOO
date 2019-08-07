@@ -8,10 +8,12 @@ public:
   Board();
   ~Board();
    void SetMatrix();
-   void Match(Gem* Location, Gem* Location2);//Abstraction and //Need a verifier of where the match is happening
-   void fill(/*Condition*/);//When there is a void on the matrix
+   void Match();//Abstraction and //Need a verifier of where the match is happening
+   void checkEmpty();//Read matrix and check when there is a void on the matrix
+   void positionGems(int i, int j);
+   void fill();//When there is a void on the matrix
    void Move();//Movement of the gems
-
+   void pruebasTablero();
    int locX, locY;
    char dir;
   // locX -> X location locY -> Y location dir -> direction

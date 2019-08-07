@@ -45,11 +45,11 @@ int fila=0; // This variable helps to print each line
   cout <<"           "<<"------------------------"<<endl;
 
 
-  for (int y=0;y<7;y++)
+  for (int x=0;x<7;x++)
   {
     cout <<"       | " <<fila <<" |:"<<" ";
     fila++;
-    for (int x=0;x<7;x++)
+    for (int y=0;y<7;y++)
     {
       cout << Table[x][y]->getType()<<"  ";//Get the Type of each gem and print it on the screen (Number)
     }
@@ -413,12 +413,111 @@ void Board::Move()
   }
 
 }
+//Metodo para hacer pruebas, cuando terminemos el juego, se elimina 
+/*
+void Board::pruebasTablero(){
+    
+    Table[0][0]= new Gem (1);
+    Table[0][1]= new Gem (1);
+    Table[0][2]= new Gem (1);
+    Table[0][3]= new Gem (1);
+    Table[0][4]= new Gem (1);
+    Table[0][5]= new Gem (1);
+    Table[0][6]= new Gem (1);
+    Table[1][0]= new Gem (1);
+    Table[1][1]= new Gem (1);
+    Table[1][2]= new Gem (1);
+    Table[1][3]= new Gem (0);
+    Table[1][4]= new Gem (0);
+    Table[1][5]= new Gem (0);
+    Table[1][6]= new Gem (1);
+    Table[2][0]= new Gem (1);
+    Table[2][1]= new Gem (1);
+    Table[2][2]= new Gem (1);
+    Table[2][3]= new Gem (1);
+    Table[2][4]= new Gem (0);
+    Table[2][5]= new Gem (0);
+    Table[2][6]= new Gem (1);
+    Table[3][0]= new Gem (1);
+    Table[3][1]= new Gem (1);
+    Table[3][2]= new Gem (1);
+    Table[3][3]= new Gem (1);
+    Table[3][4]= new Gem (0);
+    Table[3][5]= new Gem (0);
+    Table[3][6]= new Gem (1);
+    Table[4][0]= new Gem (1);
+    Table[4][1]= new Gem (1);
+    Table[4][2]= new Gem (1);
+    Table[4][3]= new Gem (0);
+    Table[4][4]= new Gem (0);
+    Table[4][5]= new Gem (1);
+    Table[4][6]= new Gem (1);
+    Table[5][0]= new Gem (1);
+    Table[5][1]= new Gem (1);
+    Table[5][2]= new Gem (0);
+    Table[5][3]= new Gem (0);
+    Table[5][4]= new Gem (0);
+    Table[5][5]= new Gem (0);
+    Table[5][6]= new Gem (1);
+    Table[6][0]= new Gem (1);
+    Table[6][1]= new Gem (1);
+    Table[6][2]= new Gem (1);
+    Table[6][3]= new Gem (1);
+    Table[6][4]= new Gem (1);
+    Table[6][5]= new Gem (1);
+    Table[6][6]= new Gem (1);  
+}
+*/ 
+
+void Board::positionGems(int i, int j){
+    
+    Table[i+1][j]=Table[i][j];
+    
+    Table[i][j]= new Gem (0);
+    
+}
+    
 
 
+void Board::checkEmpty(){
+    
+    for(int i=6;i>=0;i--){
+        for(int j=6;j>=0;j--){
+            if( i >= 0 && i < 6 && j >= 0 && j < 7 && (Table[i][j]->getType()!= 0) ){
+                
+                do{
+                if(Table[i+1][j]->getType()== 0){
+                    
+                    positionGems(i, j);
+                    i+=1;
+                }
+                
+            }while((i >= 0 && i < 7 && j >= 0 && j < 7) && Table[i+1][j]->getType()== 0 );
+         }
+       }
+    }
+    
+}
 
-////GETTERS
+void Board::fill(){
+    
+    srand (time(NULL));
+    
+    for(int i=0; i<7; i++){
+        for(int j=0; j<7; j++){
+            if( i >= 0 && i < 7 && j >= 0 && j < 7 && (Table[i][j]->getType()== 0) ){
+                
+                Table[i][j]=new Gem((rand()%5)+1);
+         }
+       }
+    }
+    
+}
+
+//GETTERS
 int Board::getSpaceGem()
 {
+    
   return SpaceGem;
 }
 

@@ -41,14 +41,6 @@ switch (option)
     break;
   }
 
- cin.get();
- return 0;
-    /*Prueba de rellenar despues del match
-    Board tablero;
-    tablero.pruebasTablero();
-    tablero.ShowBoard();
-    tablero.checkEmpty();
-    tablero.fill();
-    tablero.ShowBoard();
-     */
+cin.get();
+  return 0;
 }

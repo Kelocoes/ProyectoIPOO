@@ -10,7 +10,7 @@ public:
   Gem(int ident);
   ~Gem();
   int getType(); 
-  void setType();
+  void setType(int num);
   void Break();  // This function is used when a gem is deleted.
   void Lock(); // Changes mindLock attribute
 

@@ -3,6 +3,7 @@
 #include "Gem.h"
 #include <string>
 #include <string.h>
+#include <vector>
 
 class Board
 {
@@ -10,12 +11,15 @@ public:
   Board();
   ~Board();
    void SetMatrix();
-   void Match();//Abstraction and //Need a verifier of where the match is happening
-   void checkEmpty();//Read matrix and check when there is a void on the matrix
-   void positionGems(int i, int j);
-   void fill();//When there is a void on the matrix
+
+   void Match(); 
+   void MatchColumn(); 
+   void MatchLine(); 
+
+
+   void fill(/*Condition*/);//When there is a void on the matrix
    void Move();//Movement of the gems
-   void pruebasTablero();
+
    int locX, locY;
    char dir;
   // locX -> X location locY -> Y location dir -> direction
@@ -28,6 +32,14 @@ public:
    void CountGem();
    void SaveGame(string Route);
    //void LoadGame(string namefile);
+
+   vector <Gem*> possibleMatchs; 
+
+   int x; // Definition of positions of Matrix Recursion -> Match
+   int y; // Definition of positions of Matrix Recursion -> Match 
+
+   int score; // The points per gem. 
+
 
 protected:
 // I'll Use a board with integers

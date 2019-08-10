@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=proyectoipoo
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/proyectoipoo
+CND_ARTIFACT_NAME_Debug=ipoo
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/ipoo
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=proyectoipoo.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/proyectoipoo.tar
+CND_PACKAGE_NAME_Debug=ipoo.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/ipoo.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=proyectoipoo
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/proyectoipoo
+CND_ARTIFACT_NAME_Release=ipoo
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/ipoo
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=proyectoipoo.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/proyectoipoo.tar
+CND_PACKAGE_NAME_Release=ipoo.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/ipoo.tar
 #
 # include compiler specific variables
 #

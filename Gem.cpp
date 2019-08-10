@@ -14,6 +14,11 @@ Gem::~Gem()
   //
 }
 
+
+void Gem::setType(int num)
+{
+  Type = num; 
+}
 int Gem::getType()
 {
   return Type; // Returns the number of gem, in this case: 

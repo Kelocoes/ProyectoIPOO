@@ -582,10 +582,12 @@ void Board::fill(){
     for(int i=0; i<7; i++){
         for(int j=0; j<7; j++){
             if( i >= 0 && i < 7 && j >= 0 && j < 7 && (Table[i][j]->getType()== 0) ){
-                
-                Table[i][j]=new Gem((rand()%5)+1);
-         }
-       }
+                if (rand()%100<5){
+                    Table[i][j]=new Gem(6); 
+                } else{
+                    Table[i][j]=new Gem((rand()%5)+1);
+                }
+            }
+        }
     }
-    
 }

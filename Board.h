@@ -12,9 +12,9 @@ public:
   ~Board();
    void SetMatrix();
 
-   void Match(); 
-   void MatchColumn(); 
-   void MatchLine(); 
+   void Match();
+   void MatchColumn();
+   void MatchLine();
 
 
    void fill(/*Condition*/);//When there is a void on the matrix
@@ -31,14 +31,14 @@ public:
    void ShowBoard();
    void CountGem();
    void SaveGame(string Route);
-   //void LoadGame(string namefile);
+   void LoadGame(string namefile);
 
-   vector <Gem*> possibleMatchs; 
+   vector <Gem*> possibleMatchs;
 
    int x; // Definition of positions of Matrix Recursion -> Match
-   int y; // Definition of positions of Matrix Recursion -> Match 
+   int y; // Definition of positions of Matrix Recursion -> Match
 
-   int score; // The points per gem. 
+   int score; // The points per gem.
 
 
 protected:

@@ -19,6 +19,7 @@ Board Table;
 switch (option)
   {
     case 1:
+    Table.score=0;
     Table.Create();
     Table.Move();
     Table.SaveGame("File.txt");
@@ -27,11 +28,12 @@ switch (option)
     break;
 
     case 2:
-  /*  cout << "\n THE GAME HAS BEEN LOADED " << endl;
+    cout << "\n THE GAME HAS BEEN LOADED " << endl;
     Table.LoadGame("File.txt");
     Table.Move();
     Table.SaveGame("File.txt");
-    cin.get();*/
+    cout << "The game has been saved" << endl;
+    cin.get();
     break;
 
     case 3:

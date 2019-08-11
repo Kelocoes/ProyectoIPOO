@@ -1,4 +1,3 @@
-    
 #include <iostream>
 using namespace std;
 #include "Board.h"
@@ -51,5 +50,5 @@ switch (option)
     tablero.checkEmpty();
     tablero.fill();
     tablero.ShowBoard();
-    */ 
+   */
 }

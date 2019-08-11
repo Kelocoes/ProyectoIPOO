@@ -11,7 +11,7 @@ public:
   Board();
   ~Board();
    void SetMatrix();
-   
+   void pruebasTablero();
    void Match(); 
    void MatchColumn(); 
    void MatchLine(); 

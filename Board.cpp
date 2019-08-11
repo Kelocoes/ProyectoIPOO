@@ -244,8 +244,7 @@ void Board::Move()
           }
         } 
         else {
-            cout<<"Hola 1";
-            cout<<endl;
+            
           if (locX == 6 && ((aux == Table[locX][locY-2]->getType())||(aux ==Table[locX-1][locY-1]->getType())))
           {
             Gem* Location = Table[locX][locY];
@@ -272,8 +271,7 @@ void Board::Move()
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
             Match(); 
-            cout<<"Hola 4";
-            cout<<endl;
+        
           }
           else {
             cout << error;
@@ -621,6 +619,7 @@ void Board::Match()
               b=stoi(s);
           } 
           score+=Table[a][b]->getType();
+          Table[a][b]=NULL;
           Table[a][b]=new Gem(0);
           j++;
         }
@@ -681,3 +680,56 @@ void Board::fill(){
     // When it does: 
     Move(); 
 }
+/*
+void Board::pruebasTablero(){
+    Table[0][0]=new Gem(1);
+    Table[0][1]=new Gem(3);
+    Table[0][2]=new Gem(4);
+    Table[0][3]=new Gem(2);
+    Table[0][4]=new Gem(2);
+    Table[0][5]=new Gem(1);
+    Table[0][6]=new Gem(1);
+    Table[1][0]=new Gem(4);
+    Table[1][1]=new Gem(1);
+    Table[1][2]=new Gem(4);
+    Table[1][3]=new Gem(3);
+    Table[1][4]=new Gem(4);
+    Table[1][5]=new Gem(2);
+    Table[1][6]=new Gem(3);
+    Table[2][0]=new Gem(4);
+    Table[2][1]=new Gem(5);
+    Table[2][2]=new Gem(5);
+    Table[2][3]=new Gem(4);
+    Table[2][4]=new Gem(3);
+    Table[2][5]=new Gem(3);
+    Table[2][6]=new Gem(4);
+    Table[3][0]=new Gem(1);
+    Table[3][1]=new Gem(3);
+    Table[3][2]=new Gem(1);
+    Table[3][3]=new Gem(6);
+    Table[3][4]=new Gem(1);
+    Table[3][5]=new Gem(4);
+    Table[3][6]=new Gem(4);
+    Table[4][0]=new Gem(1);
+    Table[4][1]=new Gem(2);
+    Table[4][2]=new Gem(3);
+    Table[4][3]=new Gem(1);
+    Table[4][4]=new Gem(3);
+    Table[4][5]=new Gem(5);
+    Table[4][6]=new Gem(5);
+    Table[5][0]=new Gem(4);
+    Table[5][1]=new Gem(1);
+    Table[5][2]=new Gem(2);
+    Table[5][3]=new Gem(1);
+    Table[5][4]=new Gem(2);
+    Table[5][5]=new Gem(4);
+    Table[5][6]=new Gem(3);
+    Table[6][0]=new Gem(6);
+    Table[6][1]=new Gem(1);
+    Table[6][2]=new Gem(3);
+    Table[6][3]=new Gem(1);
+    Table[6][4]=new Gem(5);
+    Table[6][5]=new Gem(3);
+    Table[6][6]=new Gem(2);
+   
+}*/

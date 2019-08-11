@@ -11,7 +11,7 @@ public:
   Board();
   ~Board();
    void SetMatrix();
-
+   
    void Match(); 
    void MatchColumn(); 
    void MatchLine(); 
@@ -36,7 +36,7 @@ public:
    void SaveGame(string Route);
    //void LoadGame(string namefile);
 
-   vector <Gem*> possibleMatchs; 
+   vector <string>  possibleMatchs; 
 
    int x; // Definition of positions of Matrix Recursion -> Match
    int y; // Definition of positions of Matrix Recursion -> Match 

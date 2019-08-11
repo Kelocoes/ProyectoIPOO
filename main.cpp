@@ -41,7 +41,15 @@ switch (option)
     default:cout<< "Invalid Option";
     break;
   }
-
-cin.get();
-  return 0;
+    cin.get();
+    return 0;
+  /*
+    Board tablero;
+    tablero.pruebasTablero();
+    tablero.Move();
+    tablero.Match();
+    tablero.checkEmpty();
+    tablero.fill();
+    tablero.ShowBoard();
+    */ 
 }

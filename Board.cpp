@@ -17,6 +17,7 @@ Board::Board(){
   TimeGem = 0;
   SoulGem = 0;
   MindGem = 0;
+  score = 0;
 }
 
  ///////////////////////// DESTROYER //////////////////////////////////////
@@ -114,14 +115,14 @@ void Board::CountGem() // Here we define the Gem Counter
   }
 
 // Here we are printing the number of gems per type.
-  cout << "\n 1. SpaceGems: " << SpaceGem << "|| ";
+  cout << "\n1. SpaceGems: " << SpaceGem << "|| ";
   cout << "2. RealityGems: " << RealityGem << "|| ";
   cout << "3. PowerGems: " << PowerGem << "|| " << endl;
   cout << "4. TimeGems: " << TimeGem << "|| ";
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
-  cout << "\n Score: " << score << endl; 
-  cout << endl; 
+  cout << "\n Score: " << score << endl;
+  cout << endl;
 
 }
 
@@ -146,11 +147,13 @@ void Board::SaveGame(string route)
     file << endl;
   }
 
+  file << score;
+
   file.close();
 }
 
 ///////////////////////// LOAD THE GAME  //////////////////////////////////////
-/*
+
 void Board::LoadGame(string namefile)
 {
   ifstream file1;
@@ -162,7 +165,6 @@ void Board::LoadGame(string namefile)
   }
 
   string text;
-  getline(file1,text);
 
   for (int y=0;y<7;y++)
   {
@@ -170,22 +172,24 @@ void Board::LoadGame(string namefile)
     int travel=0;
       for (int x=0;x<7;x++)
       {
-          if (text[travel]==6)
+          if (text[travel]-48==6)
           {
               Table[x][y]=new Gem(6); // Creates a gem
               Table[x][y]->Lock();
           } else
             {
-              Table[x][y]=new Gem(text[travel]);//Fill the matrix with new objects that differs from each other by a number
+              Table[x][y]=new Gem(text[travel]-48);//Fill the matrix with new objects that differs from each other by a number
             }
             travel+=2;
       }
   }
 
+  getline(file1,text);
+  score=text[0]-48;
+
   file1.close();
 }
 
-*/
 ///////////////////////// MOVE THE GEMS //////////////////////////////////////
 
 void Board::Move()
@@ -228,29 +232,29 @@ void Board::Move()
       {
         aux = Table[locX][locY]->getType();
         if (locY-1==0)
-        { 
+        {
           if ( aux == Table[locX+1][locY-1]->getType() ||
                aux == Table[locX-1][locY-1]->getType() )
                {
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX][locY-1];
              Table[locX][locY-1] = Location;
-             Match();  
+             Match();
                }
           else
           {
             cout << error;
             Move();
           }
-        } 
+        }
         else {
-            
+
           if (locX == 6 && ((aux == Table[locX][locY-2]->getType())||(aux ==Table[locX-1][locY-1]->getType())))
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
-            Match(); 
+            Match();
           }
           else
           if (locX == 0 && ((aux == Table[locX][locY-2]->getType())||(aux == Table[locX+1][locY-1]->getType())))
@@ -258,7 +262,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
-            Match();  
+            Match();
           }
           else
           {
@@ -266,12 +270,12 @@ void Board::Move()
           if ( aux == Table[locX+1][locY-1]->getType() ||
                aux == Table[locX-1][locY-1]->getType() ||
                aux == Table[locX][locY-2]->getType() )
-          { 
+          {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
-            Match(); 
-        
+            Match();
+
           }
           else {
             cout << error;
@@ -303,7 +307,7 @@ void Board::Move()
              Gem* Location = Table[locX][locY];
              Table[locX][locY] = Table[locX][locY+1];
             Table[locX][locY+1] = Location;
-            Match();  
+            Match();
                }
           else
           {
@@ -317,7 +321,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY+1];
             Table[locX][locY+1] = Location;
-            Match();  
+            Match();
           }
           else
           if (locX == 0 && ((aux == Table[locX][locY+2]->getType())||(aux == Table[locX+1][locY+1]->getType())))// Borders
@@ -325,7 +329,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
-            Match();  
+            Match();
           }
           else
           {
@@ -337,7 +341,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY+1];
             Table[locX][locY+1] = Location;
-            Match();  
+            Match();
           }
           else {
             cout << error;
@@ -369,7 +373,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
-            Match();   
+            Match();
                }
           else
           {
@@ -383,7 +387,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
-            Match(); 
+            Match();
           }
           else
           if (locY == 0 && ((aux == Table[locX+1][locY+1]->getType())||(aux == Table[locX+2][locY]->getType()))) // Borders
@@ -391,7 +395,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
-            Match(); 
+            Match();
           }
           else
           {
@@ -403,7 +407,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
-            Match(); 
+            Match();
           }
           else {
             cout << error;
@@ -435,7 +439,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
-            Match();  
+            Match();
                }
           else
           {
@@ -450,7 +454,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
-            Match(); 
+            Match();
           }
           else
           if (locY == 0 && ((aux == Table[locX-1][locY+1]->getType())||(aux == Table[locX-2][locY]->getType()))) // Borders
@@ -458,7 +462,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
-            Match();  
+            Match();
           }
           else
           {
@@ -470,7 +474,7 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
-            Match(); 
+            Match();
           }
           else {
             cout << error;
@@ -494,51 +498,51 @@ void Board::Move()
 
 void Board::MatchLine()
 {
-  x = 0; 
-  y = 0; 
+  x = 0;
+  y = 0;
   while(y<7)
   {
     if (y == 6)
     {
       if (x == 6)
       {
-        y++; 
-        continue; 
+        y++;
+        continue;
       }
       if (Table[x][y]->getType() == Table[x+1][y]->getType())
       {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y)); 
-        possibleMatchs.push_back(to_string(x+1)+","+to_string(y)); 
-        x++; 
-        continue; 
+        possibleMatchs.push_back(to_string(x)+","+to_string(y));
+        possibleMatchs.push_back(to_string(x+1)+","+to_string(y));
+        x++;
+        continue;
       }
       else
       {
-        x++; 
-        continue; 
+        x++;
+        continue;
       }
     }
-    else 
+    else
     {
       if (x == 6)
       {
-        y++; 
-        x = 0; 
-        continue; 
+        y++;
+        x = 0;
+        continue;
       }
-      else 
+      else
       {
         if(Table[x][y]->getType() == Table[x+1][y]->getType())
         {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y)); 
-        possibleMatchs.push_back(to_string(x+1)+","+to_string(y)); 
-          x++; 
-          continue;  
+        possibleMatchs.push_back(to_string(x)+","+to_string(y));
+        possibleMatchs.push_back(to_string(x+1)+","+to_string(y));
+          x++;
+          continue;
         }
         else
         {
-          x++; 
-          continue; 
+          x++;
+          continue;
         }
       }
     }
@@ -547,51 +551,51 @@ void Board::MatchLine()
 
 void Board::MatchColumn()
 {
-  x = 0; 
-  y = 0; 
+  x = 0;
+  y = 0;
   while(x < 7)
   {
     if (x == 6)
     {
       if (y == 6)
       {
-        x++; 
-        continue; 
+        x++;
+        continue;
       }
       if (Table[x][y]->getType() == Table[x][y+1]->getType())
       {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y)); 
-        possibleMatchs.push_back(to_string(x)+","+to_string(y+1));  
-        y++; 
-        continue; 
+        possibleMatchs.push_back(to_string(x)+","+to_string(y));
+        possibleMatchs.push_back(to_string(x)+","+to_string(y+1));
+        y++;
+        continue;
       }
       else
       {
-        y++; 
-        continue; 
+        y++;
+        continue;
       }
     }
-    else 
+    else
     {
       if (y == 6)
       {
-        x++; 
-        y = 0; 
-        continue; 
+        x++;
+        y = 0;
+        continue;
       }
-      else 
+      else
       {
         if(Table[x][y]->getType() == Table[x][y+1]->getType())
         {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y)); 
+        possibleMatchs.push_back(to_string(x)+","+to_string(y));
         possibleMatchs.push_back(to_string(x)+","+to_string(y+1));
-          y++; 
-          continue;  
+          y++;
+          continue;
         }
         else
         {
-          y++; 
-          continue; 
+          y++;
+          continue;
         }
       }
     }
@@ -599,59 +603,59 @@ void Board::MatchColumn()
 }
 
 void Board::Match()
-{ 
+{
   MatchLine(); // This helps to see horizontal matchs
   MatchColumn();  // This helps to search for vertical matchs
   //int tamano = possibleMatchs.size();
-  
+
   for (string x : possibleMatchs) {
       istringstream f(x);
-      string s; 
+      string s;
       int j = 0;
       int a = 0;
       int b = 0;
-      
+
       while (getline(f, s, ',')) {
           if(j==0){
               a=stoi(s);
-             
+
           } else if(j==1){
               b=stoi(s);
-          } 
+          }
           score+=Table[a][b]->getType();
           Table[a][b]=NULL;
           Table[a][b]=new Gem(0);
           j++;
         }
     }
-  checkEmpty(); 
-  fill(); 
+  checkEmpty();
+  fill();
 }
-  
+
 
 void Board::positionGems(int j, int i){
-    
+
     Table[i][j+1]=Table[i][j];
-    
+
     Table[i][j]= new Gem (0);
-    
+
 }
-    
+
 
 
 void Board::checkEmpty(){
-    
+
     for(int j=6;j>=0;j--){
         for(int i=6;i>=0;i--){
             if( j >= 0 && j < 6 && i >= 0 && i < 7 && (Table[i][j]->getType()!= 0) ){
-                
+
                 do{
                 if(Table[i][j+1]->getType()== 0){
-                    
+
                     positionGems(j, i);
                     j+=1;
                 }
-                
+
             }while((i >= 0 && i < 7 && j >= 0 && j < 7) && Table[i][j+1]->getType()== 0 );
          }
        }
@@ -659,14 +663,14 @@ void Board::checkEmpty(){
 }
 
 void Board::fill(){
-    
+
     srand (time(NULL));
-    
+
     for(int i=0; i<7; i++){
         for(int j=0; j<7; j++){
             if( i >= 0 && i < 7 && j >= 0 && j < 7 && (Table[i][j]->getType()== 0) ){
                 if (rand()%100<5){
-                    Table[i][j]=new Gem(6); 
+                    Table[i][j]=new Gem(6);
                 } else{
                     Table[i][j]=new Gem((rand()%5)+1);
                 }
@@ -676,9 +680,9 @@ void Board::fill(){
     // Clean the vector called possibleMatchs
     //
 
-    possibleMatchs.clear(); 
-    // When it does: 
-    Move(); 
+    possibleMatchs.clear();
+    // When it does:
+    Move();
 }
 /*
 void Board::pruebasTablero(){
@@ -731,5 +735,5 @@ void Board::pruebasTablero(){
     Table[6][4]=new Gem(5);
     Table[6][5]=new Gem(3);
     Table[6][6]=new Gem(2);
-   
+
 }*/

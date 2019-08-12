@@ -46,6 +46,7 @@ void Board::Create(){
 ///////////////////////// SHOW THE BOARD //////////////////////////////////////
 void Board::ShowBoard()
 {
+  cout << endl;
 int fila=0; // This variable helps to print each line
 
   cout <<"           "<<"------------------------"<<endl;

@@ -336,6 +336,8 @@ void Board::Move()
             Move(); 
           }
         }
+        else
+        {
         if (locY==5) // It verifies in case there's in line 5
         {
           if ( aux == Table[locX+1][locY+1]->getType() )
@@ -392,6 +394,7 @@ void Board::Move()
           }
           }
           }
+        }
         }
       }
     break;

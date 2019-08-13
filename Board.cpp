@@ -232,16 +232,38 @@ void Board::Move()
       else
       {
         aux = Table[locX][locY]->getType();
-        if (locY-1==0)
+        if (locX == 0 && locY == 6)
         {
-          if ( aux == Table[locX+1][locY-1]->getType() ||
-               aux == Table[locX-1][locY-1]->getType() )
-               {
-             Gem* Location = Table[locX][locY];
-             Table[locX][locY] = Table[locX][locY-1];
-             Table[locX][locY-1] = Location;
-             Match();
-               }
+          if (aux == Table[locX-1][locY-1]->getType() || aux == Table[locX][locY-2]->getType())
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = Location;
+            Match();
+          }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+
+        if (locY==1)
+        {
+          if ( aux == Table[locX+1][locY-1]->getType())
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = Location;
+            Match();
+          }
+          if (aux == Table[locX-1][locY-1]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY-1];
+            Table[locX][locY-1] = Location;
+            Match();
+          }
           else
           {
             cout << error;
@@ -249,7 +271,6 @@ void Board::Move()
           }
         }
         else {
-
           if (locX == 6 && ((aux == Table[locX][locY-2]->getType())||(aux ==Table[locX-1][locY-1]->getType())))
           {
             Gem* Location = Table[locX][locY];
@@ -300,16 +321,37 @@ void Board::Move()
       else
       {
         aux = Table[locX][locY]->getType();
-        if (locY+1==6) // It verifies in case there's in line 5
+        if (locY == 0 && locX == 0)
         {
-          if ( aux == Table[locX+1][locY+1]->getType() || // Right side
-               aux == Table[locX-1][locY+1]->getType() )  // Left Side
-               {
-             Gem* Location = Table[locX][locY];
-             Table[locX][locY] = Table[locX][locY+1];
+          if (aux == Table[locX+1][locY+1]->getType() || aux == Table[locX][locY+2]->getType())
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY+1];
             Table[locX][locY+1] = Location;
             Match();
-               }
+          }
+          else 
+          {
+            cout << error; 
+            Move(); 
+          }
+        }
+        if (locY==5) // It verifies in case there's in line 5
+        {
+          if ( aux == Table[locX+1][locY+1]->getType() )
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = Location;
+            Match();
+          }  // Right side
+          if (aux == Table[locX-1][locY+1]->getType() )  // Left Side
+          {
+            Gem* Location = Table[locX][locY];
+            Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = Location;
+            Match();
+          }
           else
           {
             cout << error;
@@ -317,7 +359,7 @@ void Board::Move()
           }
         }
         else {
-          if (locX == 6 &&  ((aux == Table[locX][locY+2]->getType())||(aux ==Table[locX-1][locY+1]->getType()))) // Borders
+          if (locX == 6 && ((aux == Table[locX][locY+2]->getType())||(aux ==Table[locX-1][locY+1]->getType()))) // Borders
           {
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY+1];
@@ -328,8 +370,8 @@ void Board::Move()
           if (locX == 0 && ((aux == Table[locX][locY+2]->getType())||(aux == Table[locX+1][locY+1]->getType())))// Borders
           {
             Gem* Location = Table[locX][locY];
-            Table[locX][locY] = Table[locX][locY-1];
-            Table[locX][locY-1] = Location;
+            Table[locX][locY] = Table[locX][locY+1];
+            Table[locX][locY+1] = Location;
             Match();
           }
           else
@@ -366,7 +408,7 @@ void Board::Move()
       else
       {
         aux = Table[locX][locY]->getType();
-        if (locX+1==6) // It verifies if its at column 5
+        if (locX == 5) // It verifies if its at column 5
         {
           if ( aux == Table[locX+1][locY+1]->getType() || // Down Side
                aux == Table[locX+1][locY-1]->getType() )   // Up side
@@ -432,7 +474,7 @@ void Board::Move()
       else
       {
         aux = Table[locX][locY]->getType();
-        if (locX-1==0) // It verifies if its at column 1
+        if (locX == 1) // It verifies if its at column 1
         {
           if ( aux == Table[locX-1][locY+1]->getType() || // Down Side
                aux == Table[locX-1][locY-1]->getType() )   // Up side

@@ -39,7 +39,8 @@ switch (option)
     case 3:
     exit(0);
     break;
-    default:cout<< "Invalid Option";
+    default:cout<< "Invalid Option, restart the game";
+    cin.get();
     break;
   }
     cin.get();

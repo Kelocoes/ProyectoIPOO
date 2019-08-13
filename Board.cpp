@@ -196,7 +196,7 @@ void Board::LoadGame(string namefile)
 void Board::Move()
 {
   ShowBoard();
-  cout << " \n Exit the game? 1. Yes 2. Not" << endl;
+  cout << " \nExit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
   switch (option)
@@ -215,7 +215,7 @@ void Board::Move()
 
   cout << endl;
   cout << "Let's move. You have to type: || " << endl;
-  cout << "|| 1st Column Number || 2nd Line Number || 3st Direction " << endl;
+  cout << "|| 1st Column Number || 2nd Line Number || 3st Direction ||" << endl;
   cin >> locX >> locY >> dir;
 
   switch(dir)

@@ -122,7 +122,7 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "4. TimeGems: " << TimeGem << "|| ";
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
-  cout << "\n Score: " << score << endl;
+  cout << "\nScore: " << score << endl;
   cout << endl;
 
 }
@@ -185,9 +185,12 @@ void Board::LoadGame(string namefile)
       }
   }
 
-  getline(file1,text);
-  score=text[0]-48;
+  double data;
 
+   file1>>text;
+   stringstream aux (text);
+   aux >> data;
+  score=data;
   file1.close();
 }
 
@@ -196,7 +199,7 @@ void Board::LoadGame(string namefile)
 void Board::Move()
 {
   ShowBoard();
-  cout << " \nExit the game? 1. Yes 2. Not" << endl;
+  cout << "\nExit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
   switch (option)
@@ -241,10 +244,10 @@ void Board::Move()
             Table[locX][locY-1] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
 
@@ -330,10 +333,10 @@ void Board::Move()
             Table[locX][locY+1] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
         else

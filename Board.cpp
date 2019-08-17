@@ -221,20 +221,19 @@ void Board::Move()
   switch(dir)
   {
     int aux; 
-    aux = Table[locX][locY]->getType(); 
     case 'U' : { // To move UP -> Status Complete
-      string error; 
+      string error;
       error = "\n Movement Failure ";
       if (locY == 0)
       {
-        cout << error; 
-        Move(); 
-      } 
+        cout << error;
+        Move();
+      }
       else
       {
         aux = Table[locX][locY]->getType(); // We define position number as an aux
 
-      if (locX == 0) // In the case if its at column 0 
+      if (locX == 0) // In the case if its at column 0
       {
         if (locY == 1) // In the case if its at line 1
         {
@@ -245,10 +244,10 @@ void Board::Move()
             Table[locX][locY-1] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
         else
@@ -260,10 +259,10 @@ void Board::Move()
             Table[locX][locY-1] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
       } // Here finishes column 0 Possibilities (Borders)
@@ -271,7 +270,7 @@ void Board::Move()
       {
       if (locX == 6) // Here it starst column 6 possibilities (Borders)
       {
-        if (locY == 1) // In the case if its at line 1 
+        if (locY == 1) // In the case if its at line 1
         {
           if(aux == Table[locX-1][locY-1]->getType()) // Is it at left up?
           {
@@ -282,11 +281,11 @@ void Board::Move()
           }
           else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
-        else // other cases of being at column 6 (borders) but no at 1 
+        else // other cases of being at column 6 (borders) but no at 1
         {
           if (aux == Table[locX-1][locY-1]->getType() || aux == Table[locX][locY-2]->getType())
           {
@@ -295,10 +294,10 @@ void Board::Move()
             Table[locX][locY-1] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
       } // Here finishes column 6 possibilities
@@ -312,45 +311,45 @@ void Board::Move()
           Table[locX][locY-1] = Location;
           Match();
         }
-        else 
+        else
         {
-          cout << error; 
-          Move(); 
+          cout << error;
+          Move();
         }
-      } // Here finisihes cases for line 1 excepting col 6 and col 0 
+      } // Here finisihes cases for line 1 excepting col 6 and col 0
 
-      else  // CASES FOR ALL THE BOARD EXCEPT BORDERS 
+      else  // CASES FOR ALL THE BOARD EXCEPT BORDERS
       {
-        if (aux == Table[locX-1][locY-1]->getType() || aux == Table[locX+1][locY-1]->getType() || aux == Table[locX][locY-2]->getType()) 
+        if (aux == Table[locX-1][locY-1]->getType() || aux == Table[locX+1][locY-1]->getType() || aux == Table[locX][locY-2]->getType())
         {
           Gem* Location = Table[locX][locY];
           Table[locX][locY] = Table[locX][locY-1];
           Table[locX][locY-1] = Location;
           Match();
         }
-        else 
+        else
         {
-          cout << error; 
-          Move(); 
+          cout << error;
+          Move();
         }
       }
       }
       }
-      break; 
+      break;
     }
 
     case 'D' : { // To move DOWN -> Status COMPLETE // ERRORES
-      string error; 
+      string error;
       error = "\n You cannot do that! ";
 
       if (locY == 6)
       {
-        cout << error; 
-        Move(); 
+        cout << error;
+        Move();
       }
-      else 
+      else
       {
-        aux = Table[locX][locY]->getType(); 
+        aux = Table[locX][locY]->getType();
         if (locX == 0) // POSSIBILITIES COLUMN 0 BORDER
         {
           if (locY == 5) // It asks for pos 0 5 ->
@@ -364,11 +363,11 @@ void Board::Move()
             }
             else // Dont do the movement
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
-          else 
+          else
           {
             if (aux == Table[locX+1][locY+1]->getType() || aux == Table[locX][locY+2]->getType())
             {
@@ -379,12 +378,12 @@ void Board::Move()
             }
             else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
         }
-        
+
         else
         {
           if(locX == 6) // Column 6 POSSIBILITIES (BORDER)
@@ -400,8 +399,8 @@ void Board::Move()
               }
               else
               {
-                cout << error; 
-                Move(); 
+                cout << error;
+                Move();
               }
             }
             else
@@ -415,14 +414,14 @@ void Board::Move()
               }
               else
               {
-                cout << error; 
-                Move(); 
+                cout << error;
+                Move();
               }
             }
           }
           else
           {
-            if (locY == 5 && locX != 0 && locX !=6) // Case to move when its at line 5 
+            if (locY == 5 && locX != 0 && locX !=6) // Case to move when its at line 5
             {
               if (aux == Table[locX-1][locY+1]->getType() || aux == Table[locX+1][locY+1]->getType())
               {
@@ -433,11 +432,11 @@ void Board::Move()
               }
               else
               {
-                cout << error; 
-                Move(); 
+                cout << error;
+                Move();
               }
             }
-            else 
+            else
             {
               if (aux == Table[locX-1][locY+1]->getType() || aux == Table[locX+1][locY+1]->getType() || aux == Table[locX][locY+2]->getType() )
               {
@@ -448,27 +447,27 @@ void Board::Move()
               }
               else
               {
-                cout << error; 
-                Move(); 
+                cout << error;
+                Move();
               }
             }
           }
         }
       }
-      break; 
+      break;
     }
 
-    case 'R' : { // To move RIGHT -> Status Complete // Errores   
+    case 'R' : { // To move RIGHT -> Status Complete // Errores
       string error;
-      error = " \n Movement Failure ";      
+      error = " \n Movement Failure ";
       if (locX == 6)
       {
-        cout << error; 
+        cout << error;
         Move();
       }
       else
       {
-        aux = Table[locX][locY]->getType(); 
+        aux = Table[locX][locY]->getType();
         if (locY == 0)
         {
           if (locX == 5)
@@ -482,11 +481,11 @@ void Board::Move()
             }
             else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
-          else 
+          else
           {
             if (aux == Table[locX+2][locY]->getType() || aux == Table[locX+1][locY+1]->getType())
             {
@@ -495,10 +494,10 @@ void Board::Move()
             Table[locX+1][locY] = Location;
             Match();
             }
-            else 
+            else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
         } // Finishes of look when its at the border up (upside)
@@ -513,10 +512,10 @@ void Board::Move()
             Table[locX+1][locY] = Location;
             Match();
             }
-            else 
+            else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
           else
@@ -530,12 +529,12 @@ void Board::Move()
             }
             else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
-        } 
-        if (locX == 5) // In the case for COl 1 except line 0 and 6 
+        }
+        if (locX == 5) // In the case for COl 1 except line 0 and 6
         {
           if (aux == Table[locX+1][locY-1]->getType() || aux == Table[locX+1][locY+1]->getType())
           {
@@ -546,11 +545,11 @@ void Board::Move()
           }
           else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
-        else 
+        else
         {
           if (aux == Table[locX+1][locY+1]->getType() || aux == Table[locX+1][locY-1]->getType() || aux == Table[locX+2][locY]->getType())
           {
@@ -559,27 +558,27 @@ void Board::Move()
             Table[locX+1][locY] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
       }
-      break; 
+      break;
     }
 
-    case 'L' : { // To move Left -> Status Complete // ERRORES 
+    case 'L' : { // To move Left -> Status Complete // ERRORES
       string error;
-      error = " \n Movement Failure ";      
+      error = " \n Movement Failure ";
       if (locX == 0)
       {
-        cout << error; 
+        cout << error;
         Move();
       }
       else
       {
-        aux = Table[locX][locY]->getType(); 
+        aux = Table[locX][locY]->getType();
         if (locY == 0)
         {
           if (locX == 1)
@@ -593,11 +592,11 @@ void Board::Move()
             }
             else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
-          else 
+          else
           {
             if (aux == Table[locX-2][locY]->getType() || aux == Table[locX-1][locY+1]->getType())
             {
@@ -606,10 +605,10 @@ void Board::Move()
             Table[locX-1][locY] = Location;
             Match();
             }
-            else 
+            else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
         } // Finishes of look when its at the border up (upside)
@@ -624,10 +623,10 @@ void Board::Move()
             Table[locX-1][locY] = Location;
             Match();
             }
-            else 
+            else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
           else
@@ -641,12 +640,12 @@ void Board::Move()
             }
             else
             {
-              cout << error; 
-              Move(); 
+              cout << error;
+              Move();
             }
           }
-        } 
-        if (locX == 1) // In the case for COl 1 except line 0 and 6 
+        }
+        if (locX == 1) // In the case for COl 1 except line 0 and 6
         {
           if (aux == Table[locX-1][locY-1]->getType() || aux == Table[locX-1][locY+1]->getType())
           {
@@ -657,11 +656,11 @@ void Board::Move()
           }
           else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
-        else 
+        else
         {
           if (aux == Table[locX-1][locY+1]->getType() || aux == Table[locX-1][locY-1]->getType() || aux == Table[locX-2][locY]->getType())
           {
@@ -670,17 +669,17 @@ void Board::Move()
             Table[locX-1][locY] = Location;
             Match();
           }
-          else 
+          else
           {
-            cout << error; 
-            Move(); 
+            cout << error;
+            Move();
           }
         }
       }
-      break; 
-  } // Finishes case D 
+      break;
+  } // Finishes case D
 
-} // Finishes Switch 
+} // Finishes Switch
 
 } // Finishes Move()
 

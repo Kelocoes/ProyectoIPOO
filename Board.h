@@ -36,7 +36,7 @@ public:
    void SaveGame(string Route);
    void LoadGame(string namefile);
 
-   vector <string>  possibleMatchs;
+   vector <Gem*>  possibleMatchs;
 
    int x; // Definition of positions of Matrix Recursion -> Match
    int y; // Definition of positions of Matrix Recursion -> Match

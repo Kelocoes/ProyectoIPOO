@@ -560,8 +560,8 @@ void Board::MatchLine()
       }
       if (Table[x][y]->getType() == Table[x+1][y]->getType())
       {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y));
-        possibleMatchs.push_back(to_string(x+1)+","+to_string(y));
+        possibleMatchs.push_back(Table[x][y]);
+        possibleMatchs.push_back(Table[x+1][y]);
         x++;
         continue;
       }
@@ -583,8 +583,8 @@ void Board::MatchLine()
       {
         if(Table[x][y]->getType() == Table[x+1][y]->getType())
         {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y));
-        possibleMatchs.push_back(to_string(x+1)+","+to_string(y));
+          possibleMatchs.push_back(Table[x][y]);
+          possibleMatchs.push_back(Table[x+1][y]);
           x++;
           continue;
         }
@@ -613,8 +613,8 @@ void Board::MatchColumn()
       }
       if (Table[x][y]->getType() == Table[x][y+1]->getType())
       {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y));
-        possibleMatchs.push_back(to_string(x)+","+to_string(y+1));
+        possibleMatchs.push_back(Table[x][y]);
+        possibleMatchs.push_back(Table[x][y+1]);
         y++;
         continue;
       }
@@ -636,8 +636,8 @@ void Board::MatchColumn()
       {
         if(Table[x][y]->getType() == Table[x][y+1]->getType())
         {
-        possibleMatchs.push_back(to_string(x)+","+to_string(y));
-        possibleMatchs.push_back(to_string(x)+","+to_string(y+1));
+          possibleMatchs.push_back(Table[x][y]);
+          possibleMatchs.push_back(Table[x][y+1]);
           y++;
           continue;
         }
@@ -653,34 +653,22 @@ void Board::MatchColumn()
 
 void Board::Match()
 {
+
   MatchLine(); // This helps to see horizontal matchs
   MatchColumn();  // This helps to search for vertical matchs
-  //int tamano = possibleMatchs.size();
 
-  for (string x : possibleMatchs) {
-      istringstream f(x);
-      string s;
-      int j = 0;
-      int a = 0;
-      int b = 0;
+  int tamano = possibleMatchs.size();
 
-      while (getline(f, s, ',')) {
-          if(j==0){
-              a=stoi(s);
-
-          } else if(j==1){
-              b=stoi(s);
-          }
-          score+=Table[a][b]->getType();
-          Table[a][b]=NULL;
-          Table[a][b]=new Gem(0);
-          j++;
-        }
-    }
+  for (int x = 0; x<tamano; x++)
+  {
+    score += possibleMatchs[x]->getType();
+    possibleMatchs[x]->setType(0);
+  }
+  ShowBoard();
   checkEmpty();
+  ShowBoard();
   fill();
 }
-
 
 void Board::positionGems(int j, int i){
 
@@ -692,7 +680,7 @@ void Board::positionGems(int j, int i){
 
 
 
-void Board::checkEmpty(){
+void Board::checkEmpty(){/////ERROR!!!!!!!
 
     for(int j=6;j>=0;j--){
         for(int i=6;i>=0;i--){
@@ -705,7 +693,7 @@ void Board::checkEmpty(){
                     j+=1;
                 }
 
-            }while((i >= 0 && i < 7 && j >= 0 && j < 7) && Table[i][j+1]->getType()== 0 );
+            }while((i >= 0 && i < 7 && j >= 0 && j < 7) && Table[i][j]->getType()== 0 );
          }
        }
     }

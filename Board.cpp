@@ -122,7 +122,7 @@ void Board::CountGem() // Here we define the Gem Counter
   cout << "4. TimeGems: " << TimeGem << "|| ";
   cout << "5. SoulGems: " << SoulGem << "|| ";
   cout << "6. MindGems: " << MindGem << "|| ";
-  cout << "\n Score: " << score << endl;
+  cout << "\nScore: " << score << endl;
   cout << endl;
 
 }
@@ -185,8 +185,12 @@ void Board::LoadGame(string namefile)
       }
   }
 
-  getline(file1,text);
-  score=text[0]-48;
+  double data;
+
+   file1>>text;
+   stringstream aux (text);
+   aux >> data;
+  score=data;
 
   file1.close();
 }
@@ -220,7 +224,7 @@ void Board::Move()
 
   switch(dir)
   {
-    int aux; 
+    int aux;
     case 'U' : { // To move UP -> Status Complete
       string error;
       error = "\n Movement Failure ";

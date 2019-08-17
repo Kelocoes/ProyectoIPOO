@@ -1,0 +1,60 @@
+MOVEMENT IN UP
+->
+1) Cuando esta en la fila 0 -> Error
+	2) Columna 0?
+		2.1) Fila 1? -> Mira a arriba derecha
+		2.2) Resto de filas -> Mira a arriba derecha y arriba 2
+	3) Columna 6? 
+		3.1) Fila 1? -> Mira a arriba izquierda
+		3.2) Resto de filas -> Mira a arriba izquierda y dos veces arriba
+	4) Fila 1 y columnas el resto diferentes de 0 y 6
+		4.1) Mira a arriba izquierda y derecha. 
+	5) Resto de filas diferentes de la 1 y no bordes: 	
+	if	Movement -> Arriba arriba, arriba derecha y arriba izq
+
+Movement in down 
+
+1) Cuando esta en la fila 6 -> error
+	2) Columna 0? 
+		2.1) Fila 5? -> Mira a abajo derecha
+		2.2) Resto de filas -> Mira a abajo dos veces y abajo derecha
+	3) Columna 6? 
+		3.1) Fila 5? -> Mira a abajo izquierda
+		3.2) Resto de filas -> Mira a abajo dos veces y abajo izquierda
+	4) Fila 5 y columnas el resto diferentes de col 0 y 6
+		4.1) Mira a abajo izquierda y derecha
+	5) Resto de filas diferentes de la 5 y no bordes: 
+	if Movement -> Abajo abajo, abajo izq, abajo der
+
+Movement in right
+
+1) Cuando esta en la columna 6 -> error 
+	2) fila 0
+		2.1) Columna 5 -> Mira a derecha abajo una vez
+		2.2) Resto de columnas -> Mira a derecha dos veces y abajo derecha. 
+	3) Fila 6
+		2.1) Columna 5 -> Mira a derecha arriba una vez 
+		2.2) Resto de columnas -> Mira a derecha dos veces y arriba derecha
+	4) Columna 5 y filas el resto diferentes fil 0 y 6 
+		4.1) Mira a derecha  abajo y arriba
+	5) Resto de columnas diferentes de la 5 y no bordes: 
+	if movement -> derecha derecha, derecha arriba, derecha abajo
+
+Movement in left
+
+1) Cuando esta en la columna 0 -> error; 
+	2) fila 0 
+		2.1) Columna 1 -> Mira a izquierda abajo una vez
+		2.2) Resto de columnas -> Mira a izquierda x2 y izquierda abajo
+	3) Fila 6 
+		2.1) Columna 1 -> Mira a izquierda arriba una vez 
+		2.2) Resto de columnas -> Mira a izq x2 y arriba izq
+	4) Columna 1 y filas excepto fil 0 y 6
+		4.1) Mira a izq abajo y arriba
+	5) Resto de columnas diferentes de la 1 y los bordes. 
+	if movement -> izquierda izquierda, izquierda arriba, izquierda derecha
+
+
+
+		
+		

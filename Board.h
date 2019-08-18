@@ -35,7 +35,7 @@ public:
    void CountGem();
    void SaveGame(string Route);
    void LoadGame(string namefile);
-
+   int Movements;
    vector <Gem*>  possibleMatchs;
 
    int x; // Definition of positions of Matrix Recursion -> Match

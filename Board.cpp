@@ -18,6 +18,7 @@ Board::Board(){
   SoulGem = 0;
   MindGem = 0;
   score = 0;
+  Movements = 20;
 }
 
  ///////////////////////// DESTROYER //////////////////////////////////////
@@ -64,6 +65,7 @@ int fila=0; // This variable helps to print each line
     }
     cout << endl;
   }
+  cout << "\nMovements left: " <<Movements << endl;
   CountGem(); // When the matrix is printed we are gonna
   // count how much type of gems are.
 
@@ -149,6 +151,8 @@ void Board::SaveGame(string route)
   }
 
   file << score;
+  file << endl;
+  file << Movements;
 
   file.close();
 }
@@ -185,12 +189,17 @@ void Board::LoadGame(string namefile)
       }
   }
 
-  double data;
-
-   file1>>text;
-   stringstream aux (text);
-   aux >> data;
+  double data,data1;
+  file1>>text;
+  stringstream aux (text);
+  aux >> data;
   score=data;
+
+
+  file1>>text;
+  stringstream aux1(text);
+  aux1 >> data1;
+  Movements=data1;
 
   file1.close();
 }
@@ -199,8 +208,10 @@ void Board::LoadGame(string namefile)
 
 void Board::Move()
 {
+if (score<500 &&Movements!=0)
+{
   ShowBoard();
-  cout << " \nExit the game? 1. Yes 2. Not" << endl;
+  cout << "Exit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
   switch (option)
@@ -212,13 +223,12 @@ void Board::Move()
     case 2:
     break;
 
-    default:cout<< "Invalid Option " << endl;
-    Move();
+    default:cout<< "\nInvalid Option, try again next time" << endl;
     break;
   }
 
   cout << endl;
-  cout << "Let's move. You have to type: || " << endl;
+  cout << "Let's move. You have to type:" << endl;
   cout << "|| 1st Column Number || 2nd Line Number || 3st Direction ||" << endl;
   cin >> locX >> locY >> dir;
 
@@ -231,6 +241,7 @@ void Board::Move()
       if (locY == 0)
       {
         cout << error;
+        Movements--;
         Move();
       }
       else
@@ -246,11 +257,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -261,11 +274,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -281,11 +296,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -296,11 +313,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX][locY-1];
             Table[locX][locY-1] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -313,11 +332,13 @@ void Board::Move()
           Gem* Location = Table[locX][locY];
           Table[locX][locY] = Table[locX][locY-1];
           Table[locX][locY-1] = Location;
+          Movements--;
           Match();
         }
         else
         {
           cout << error;
+          Movements--;
           Move();
         }
       } // Here finisihes cases for line 1 excepting col 6 and col 0
@@ -329,11 +350,13 @@ void Board::Move()
           Gem* Location = Table[locX][locY];
           Table[locX][locY] = Table[locX][locY-1];
           Table[locX][locY-1] = Location;
+          Movements--;
           Match();
         }
         else
         {
           cout << error;
+          Movements--;
           Move();
         }
       }
@@ -349,6 +372,7 @@ void Board::Move()
       if (locY == 6)
       {
         cout << error;
+        Movements--;
         Move();
       }
       else
@@ -363,11 +387,13 @@ void Board::Move()
               Gem* Location = Table[locX][locY];
               Table[locX][locY] = Table[locX][locY+1];
               Table[locX][locY+1] = Location;
+              Movements--;
               Match();
             }
             else // Dont do the movement
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -378,11 +404,13 @@ void Board::Move()
               Gem* Location = Table[locX][locY];
               Table[locX][locY] = Table[locX][locY+1];
               Table[locX][locY+1] = Location;
+              Movements--;
               Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -399,11 +427,13 @@ void Board::Move()
                 Gem* Location = Table[locX][locY];
                 Table[locX][locY] = Table[locX][locY+1];
                 Table[locX][locY+1] = Location;
+                Movements--;
                 Match();
               }
               else
               {
                 cout << error;
+                Movements--;
                 Move();
               }
             }
@@ -414,11 +444,13 @@ void Board::Move()
                 Gem* Location = Table[locX][locY];
                 Table[locX][locY] = Table[locX][locY+1];
                 Table[locX][locY+1] = Location;
+                Movements--;
                 Match();
               }
               else
               {
                 cout << error;
+                Movements--;
                 Move();
               }
             }
@@ -432,11 +464,13 @@ void Board::Move()
                 Gem* Location = Table[locX][locY];
                 Table[locX][locY] = Table[locX][locY+1];
                 Table[locX][locY+1] = Location;
+                Movements--;
                 Match();
               }
               else
               {
                 cout << error;
+                Movements--;
                 Move();
               }
             }
@@ -447,11 +481,13 @@ void Board::Move()
                 Gem* Location = Table[locX][locY];
                 Table[locX][locY] = Table[locX][locY+1];
                 Table[locX][locY+1] = Location;
+                Movements--;
                 Match();
               }
               else
               {
                 cout << error;
+                Movements--;
                 Move();
               }
             }
@@ -467,6 +503,7 @@ void Board::Move()
       if (locX == 6)
       {
         cout << error;
+        Movements--;
         Move();
       }
       else
@@ -481,11 +518,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -496,11 +535,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -514,11 +555,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -529,11 +572,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -545,11 +590,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -560,11 +607,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX+1][locY];
             Table[locX+1][locY] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -592,11 +641,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -607,11 +658,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -625,11 +678,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -640,11 +695,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
             }
             else
             {
               cout << error;
+              Movements--;
               Move();
             }
           }
@@ -656,11 +713,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -671,11 +730,13 @@ void Board::Move()
             Gem* Location = Table[locX][locY];
             Table[locX][locY] = Table[locX-1][locY];
             Table[locX-1][locY] = Location;
+            Movements--;
             Match();
           }
           else
           {
             cout << error;
+            Movements--;
             Move();
           }
         }
@@ -684,6 +745,15 @@ void Board::Move()
   } // Finishes case D
 
 } // Finishes Switch
+
+}else if (Movements=0)
+  {
+    cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
+  }else if (score>=500)
+    {
+      cout <<"\nYOU WIN. ¡CONTRAGULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
+    }
+
 
 } // Finishes Move()
 
@@ -806,9 +876,9 @@ void Board::Match()
     score += possibleMatchs[x]->getType();
     possibleMatchs[x]->setType(0);
   }
-  ShowBoard();
+//  ShowBoard();
   checkEmpty();
-  ShowBoard();
+//  ShowBoard();
   fill();
 }
 
@@ -863,56 +933,3 @@ void Board::fill(){
     // When it does:
     Move();
 }
-/*
-void Board::pruebasTablero(){
-    Table[0][0]=new Gem(1);
-    Table[0][1]=new Gem(3);
-    Table[0][2]=new Gem(4);
-    Table[0][3]=new Gem(2);
-    Table[0][4]=new Gem(2);
-    Table[0][5]=new Gem(1);
-    Table[0][6]=new Gem(1);
-    Table[1][0]=new Gem(4);
-    Table[1][1]=new Gem(1);
-    Table[1][2]=new Gem(4);
-    Table[1][3]=new Gem(3);
-    Table[1][4]=new Gem(4);
-    Table[1][5]=new Gem(2);
-    Table[1][6]=new Gem(3);
-    Table[2][0]=new Gem(4);
-    Table[2][1]=new Gem(5);
-    Table[2][2]=new Gem(5);
-    Table[2][3]=new Gem(4);
-    Table[2][4]=new Gem(3);
-    Table[2][5]=new Gem(3);
-    Table[2][6]=new Gem(4);
-    Table[3][0]=new Gem(1);
-    Table[3][1]=new Gem(3);
-    Table[3][2]=new Gem(1);
-    Table[3][3]=new Gem(6);
-    Table[3][4]=new Gem(1);
-    Table[3][5]=new Gem(4);
-    Table[3][6]=new Gem(4);
-    Table[4][0]=new Gem(1);
-    Table[4][1]=new Gem(2);
-    Table[4][2]=new Gem(3);
-    Table[4][3]=new Gem(1);
-    Table[4][4]=new Gem(3);
-    Table[4][5]=new Gem(5);
-    Table[4][6]=new Gem(5);
-    Table[5][0]=new Gem(4);
-    Table[5][1]=new Gem(1);
-    Table[5][2]=new Gem(2);
-    Table[5][3]=new Gem(1);
-    Table[5][4]=new Gem(2);
-    Table[5][5]=new Gem(4);
-    Table[5][6]=new Gem(3);
-    Table[6][0]=new Gem(6);
-    Table[6][1]=new Gem(1);
-    Table[6][2]=new Gem(3);
-    Table[6][3]=new Gem(1);
-    Table[6][4]=new Gem(5);
-    Table[6][5]=new Gem(3);
-    Table[6][6]=new Gem(2);
-
-}*/

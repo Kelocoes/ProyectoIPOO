@@ -1,3 +1,6 @@
 build/
 dist/Debug/MinGW-Windows/ipoo.exe
 dist/Debug/MinGW-Windows/proyectoipoo.exe
+test.exe
+Board.cpp.rej
+a.exe

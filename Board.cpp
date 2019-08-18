@@ -812,7 +812,7 @@ void Board::Match()
   fill();
 }
 
-void Board::positionGems(int j, int i){
+void Board::positionGems(int i, int j){
 
     Table[i][j+1]=Table[i][j];
 
@@ -822,7 +822,7 @@ void Board::positionGems(int j, int i){
 
 
 
-void Board::checkEmpty(){/////ERROR!!!!!!!
+void Board::checkEmpty(){
 
     for(int j=6;j>=0;j--){
         for(int i=6;i>=0;i--){
@@ -831,11 +831,11 @@ void Board::checkEmpty(){/////ERROR!!!!!!!
                 do{
                 if(Table[i][j+1]->getType()== 0){
 
-                    positionGems(j, i);
+                    positionGems(i, j);
                     j+=1;
                 }
 
-            }while((i >= 0 && i < 7 && j >= 0 && j < 7) && Table[i][j]->getType()== 0 );
+            }while((i >= 0 && i < 7 && j >= 0 && j < 6) && Table[i][j+1]->getType()== 0 );
          }
        }
     }

@@ -232,10 +232,10 @@ if (score<500 &&Movements!=0)
   cout << "|| 1st Column Number || 2nd Line Number || 3st Direction ||" << endl;
   cin >> locX >> locY >> dir;
 
-  if (Table[locX][locY]->getMind() == true) // Is gem locked?
+  if (Table[locX][locY]->getType() == 6) // Is Mindgem touched?
   {
     string advertisement; 
-    advertisement = "\n Hey Listen! Gem is blocked. Try again";
+    advertisement = "\n Hey Listen! Gem can't be moved. Try again";
     cout << "----------------------------------------" << endl; 
     cout << advertisement << endl; 
     cout << "----------------------------------------" << endl; 
@@ -888,9 +888,9 @@ void Board::Match()
     score += possibleMatchs[x]->getType();
     possibleMatchs[x]->setType(0);
   }
-//  ShowBoard();
+  ShowBoard();
   checkEmpty();
-//  ShowBoard();
+  ShowBoard();
   fill();
 }
 

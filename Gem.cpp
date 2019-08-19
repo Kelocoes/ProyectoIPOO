@@ -38,3 +38,8 @@ void Gem::Lock()
 {
   mindLock = true; // This lock Gem Status
 }
+
+bool Gem::getMind()
+{
+  return mindLock; 
+}

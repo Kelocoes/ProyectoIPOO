@@ -14,6 +14,9 @@ public:
   void Break();  // This function is used when a gem is deleted.
   void Lock(); // Changes mindLock attribute
 
+  // New functions 
+  bool getMind(); // Helps to see if a gem its blocked 
+
 protected:
 private:
 

@@ -232,6 +232,17 @@ if (score<500 &&Movements!=0)
   cout << "|| 1st Column Number || 2nd Line Number || 3st Direction ||" << endl;
   cin >> locX >> locY >> dir;
 
+  if (Table[locX][locY]->getMind() == true) // Is gem locked?
+  {
+    string advertisement; 
+    advertisement = "\n Hey Listen! Gem is blocked. Try again";
+    cout << "----------------------------------------" << endl; 
+    cout << advertisement << endl; 
+    cout << "----------------------------------------" << endl; 
+    Movements--; 
+    Move();  
+  }
+  {
   switch(dir)
   {
     int aux;
@@ -497,7 +508,7 @@ if (score<500 &&Movements!=0)
       break;
     }
 
-    case 'R' : { // To move RIGHT -> Status Complete // Errores
+    case 'R' : { // To move RIGHT -> Status Complete 
       string error;
       error = " \n Movement Failure ";
       if (locX == 6)
@@ -745,8 +756,9 @@ if (score<500 &&Movements!=0)
   } // Finishes case D
 
 } // Finishes Switch
+  }
 
-}else if (Movements=0)
+}else if (Movements==0)
   {
     cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
   }else if (score>=500)

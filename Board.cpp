@@ -783,7 +783,7 @@ void Board::MatchLine()
         y++;
         continue;
       }
-      if (Table[x][y]->getType() == Table[x+1][y]->getType())
+      if (Table[x][y]->getType() == Table[x+1][y]->getType() && Table[x][y]->getType() != 6)
       {
         possibleMatchs.push_back(Table[x][y]);
         possibleMatchs.push_back(Table[x+1][y]);
@@ -806,7 +806,7 @@ void Board::MatchLine()
       }
       else
       {
-        if(Table[x][y]->getType() == Table[x+1][y]->getType())
+        if(Table[x][y]->getType() == Table[x+1][y]->getType() && Table[x][y]->getType() != 6)
         {
           possibleMatchs.push_back(Table[x][y]);
           possibleMatchs.push_back(Table[x+1][y]);
@@ -836,7 +836,7 @@ void Board::MatchColumn()
         x++;
         continue;
       }
-      if (Table[x][y]->getType() == Table[x][y+1]->getType())
+      if (Table[x][y]->getType() == Table[x][y+1]->getType() && Table[x][y]->getType() != 6)
       {
         possibleMatchs.push_back(Table[x][y]);
         possibleMatchs.push_back(Table[x][y+1]);
@@ -859,7 +859,7 @@ void Board::MatchColumn()
       }
       else
       {
-        if(Table[x][y]->getType() == Table[x][y+1]->getType())
+        if(Table[x][y]->getType() == Table[x][y+1]->getType() && Table[x][y]->getType() != 6)
         {
           possibleMatchs.push_back(Table[x][y]);
           possibleMatchs.push_back(Table[x][y+1]);

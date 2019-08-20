@@ -15,12 +15,12 @@ public:
   void Lock(); // Changes mindLock attribute
 
   // New functions 
-  bool getMind(); // Helps to see if a gem its blocked 
+  int getMind(); // Helps to see if a gem its blocked 
 
 protected:
 private:
 
-bool mindLock; //     MindGem status (if its available to use)
+int mindLock; //     MindGem status (if its available to use)
 int Type; //          Indicates the kind of gem (there are 6 types of gems)
 
 };

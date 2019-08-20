@@ -6,7 +6,7 @@ using namespace std;
 Gem::Gem(int id)
 {
   Type = id; // Number that let you use the gem. 
-  mindLock = false; // It starts at false. It starts unlocked. 
+  mindLock = 0; // It starts at false. It starts unlocked. 
 }
 
 Gem::~Gem()
@@ -36,10 +36,10 @@ int Gem::getType()
 
 void Gem::Lock()
 {
-  mindLock = true; // This lock Gem Status
+  mindLock++; 
 }
 
-bool Gem::getMind()
+int Gem::getMind()
 {
   return mindLock; 
 }

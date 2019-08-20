@@ -19,6 +19,7 @@ Board::Board(){
   MindGem = 0;
   score = 0;
   Movements = 20;
+  cicle=0;
 }
 
  ///////////////////////// DESTROYER //////////////////////////////////////
@@ -763,7 +764,7 @@ if (score<500 &&Movements!=0)
     cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
   }else if (score>=500)
     {
-      cout <<"\nYOU WIN. ¡CONTRAGULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
+      cout <<"\nYOU WIN. ¡CONGRATULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
     }
 
 
@@ -875,6 +876,111 @@ void Board::MatchColumn()
   }
 }
 
+void Board::MatchMind(int x, int y)
+{
+  // first Line
+  if (y == 0)
+  {
+    if (x == 0)
+    {
+      if (Table[x+1][y]->getType() == 0 || Table[x+1][y+1]->getType() == 0 || Table[x][y+1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else{
+      {
+        //
+      }}
+    }
+    else
+    {
+    if (x == 6)
+    {
+      if (Table[x-1][y]->getType() == 0 || Table[x-1][y+1]->getType() == 0 || Table[x][y+1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else
+      {
+        //
+      }
+    }
+    else
+    {
+      if (Table[x+1][y]->getType() == 0 || Table[x-1][y]->getType() == 0 || Table[x][y+1]->getType() == 0 || Table[x+1][y+1]->getType() == 0 || Table[x-1][y+1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else{}
+    }
+    } 
+  }
+  else
+  {
+  if (y == 6) // Line 6 
+  {
+    if (x == 0)
+    {
+      if (Table[x+1][y-1]->getType() == 0 || Table[x+1][y]->getType() == 0 || Table[x][y-1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else {}
+    }
+    else
+    {
+      if (x == 6)
+      {
+        if (Table[x-1][y]->getType() == 0 || Table[x][y-1]->getType() == 0 || Table[x-1][y-1]->getType() == 0)
+        {
+          Table[x][y]->Lock(); 
+        }
+        else{}
+      }
+      else
+      {
+        if (Table[x][y-1]->getType() == 0 || Table[x-1][y]->getType() == 0 || Table[x+1][y]->getType() == 0 || Table[x+1][y-1]->getType() == 0 || Table[x-1][y-1]->getType() == 0)
+        {
+          Table[x][y]->Lock(); 
+        }
+        else {}
+      }
+    } 
+  }
+  else
+  {
+    if (x == 0) // Column 0?
+    {
+      if (Table[x][y-1]->getType() == 0 || Table[x][y+1]->getType() == 0 || Table[x+1][y]->getType() == 0 || Table[x+1][y-1]->getType() == 0 || Table[x+1][y+1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else {}
+    }
+    else 
+    {
+    if (x == 6) // Column 6?
+    {
+      if (Table[x][y-1]->getType() == 0 || Table[x][y+1]->getType() == 0 || Table[x-1][y]->getType() == 0 || Table[x-1][y-1]->getType() == 0 || Table[x-1][y+1]->getType() == 0)
+      {
+        Table[x][y]->Lock(); 
+      }
+      else {}
+    }
+    else
+    {
+      if (Table[x][y-1]->getType() == 0 || Table[x][y+1]->getType() == 0 || Table[x-1][y]->getType() == 0 || Table[x-1][y-1]->getType() == 0 || Table[x-1][y+1]->getType() == 0 || Table[x+1][y]->getType() == 0 || Table[x+1][y-1]->getType() == 0 || Table[x+1][y+1]->getType() == 0) // Rest of cases 
+      {
+        Table[x][y]->Lock(); 
+      }
+      else{}
+    }
+    }
+    }
+  }
+}
+
+
 void Board::Match()
 {
 
@@ -888,6 +994,26 @@ void Board::Match()
     score += possibleMatchs[x]->getType();
     possibleMatchs[x]->setType(0);
   }
+  for(int y = 0; y<7; y++)
+  {
+    for(int x = 0; x<7; x++)
+    {
+      if (Table[x][y]->getMind() == 1)
+      {
+        MatchMind(x , y); 
+      }
+      else 
+      {
+        if (Table[x][y]->getMind() == 2)
+        {
+          score+=6;
+          Table[x][y]->setType(0);
+        }
+      }
+    }
+  }
+
+
   ShowBoard();
   checkEmpty();
   ShowBoard();
@@ -899,10 +1025,7 @@ void Board::positionGems(int i, int j){
     Table[i][j+1]=Table[i][j];
 
     Table[i][j]= new Gem (0);
-
 }
-
-
 
 void Board::checkEmpty(){
 
@@ -931,8 +1054,11 @@ void Board::fill(){
         for(int j=0; j<7; j++){
             if( i >= 0 && i < 7 && j >= 0 && j < 7 && (Table[i][j]->getType()== 0) ){
                 if (rand()%100<5){
-                    Table[i][j]=new Gem(6);
+                    delete Table[i][j];
+                    Table[i][j]= new Gem(6);
+                    Table[i][j]->Lock(); 
                 } else{
+                    delete Table[i][j];
                     Table[i][j]=new Gem((rand()%5)+1);
                 }
             }

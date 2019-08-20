@@ -43,6 +43,9 @@ public:
 
    int score; // The points per gem.
 
+   // New Functions
+   void MatchMind(int x, int y);  
+
 
 protected:
 // I'll Use a board with integers
@@ -59,5 +62,6 @@ private:
   int TimeGem;//4
   int SoulGem;//5
   int MindGem;//6
+  int cicle;
 };
 #endif

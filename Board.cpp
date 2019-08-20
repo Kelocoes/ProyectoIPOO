@@ -209,7 +209,7 @@ void Board::LoadGame(string namefile)
 
 void Board::Move()
 {
-if (score<500 &&Movements!=0)
+if (score<500000 &&Movements!=0)
 {
   ShowBoard();
   cout << "Exit the game? 1. Yes 2. Not" << endl;
@@ -762,7 +762,7 @@ if (score<500 &&Movements!=0)
 }else if (Movements==0)
   {
     cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
-  }else if (score>=500)
+  }else if (score>=500000)
     {
       cout <<"\nYOU WIN. ¡CONGRATULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
     }
@@ -1012,12 +1012,27 @@ void Board::Match()
       }
     }
   }
+cicle=0;
+for (int a=0;a<7;a++)
+{
+  for (int b=0;b<7;b++)
+  {
+    if (Table[b][a]->getType()==0)
+    {
+      cicle++;
+    }
+  }
+}
 
-
+if (cicle!=0)
+{
   ShowBoard();
   checkEmpty();
   ShowBoard();
   fill();
+  ShowBoard();
+  Match();
+}else Move();
 }
 
 void Board::positionGems(int i, int j){
@@ -1069,5 +1084,5 @@ void Board::fill(){
 
     possibleMatchs.clear();
     // When it does:
-    Move();
+    //Move();
 }

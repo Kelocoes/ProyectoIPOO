@@ -209,7 +209,7 @@ void Board::LoadGame(string namefile)
 
 void Board::Move()
 {
-if (score<500000 &&Movements!=0)
+if (score<100000 &&Movements!=0)
 {
   ShowBoard();
   cout << "Exit the game? 1. Yes 2. Not" << endl;
@@ -762,7 +762,7 @@ if (score<500000 &&Movements!=0)
 }else if (Movements==0)
   {
     cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
-  }else if (score>=500000)
+  }else if (score>=100000)
     {
       cout <<"\nYOU WIN. ¡CONGRATULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
     }

@@ -18,7 +18,7 @@ Board::Board(){
   SoulGem = 0;
   MindGem = 0;
   score = 0;
-  Movements = 20;
+  Movements = 15;
   cicle=0;
 }
 

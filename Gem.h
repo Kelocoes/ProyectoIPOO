@@ -7,9 +7,18 @@
 class Gem
 {
 public:
-  Gem(int ident);
-  ~Gem();
-  int getType(); 
+  Gem(int ident); // Builder 
+  // it receives and identifier to recognize what gem is it 
+  /*
+  1 - SpaceGem
+  2 - RealityGem
+  3 - PowerGem 
+  4 - TimeGem
+  5 - SoulGem
+  6 - MindGem
+  */
+  ~Gem(); // Destructor 
+  int getType(); // Returns the number what identifies the type
   void setType(int num);
   void Break();  // This function is used when a gem is deleted.
   void Lock(); // Changes mindLock attribute

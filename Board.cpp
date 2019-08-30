@@ -18,7 +18,7 @@ Board::Board(){
   SoulGem = 0;
   MindGem = 0;
   score = 0;
-  Movements = 15;
+  Movements = 15; // Max movements per game 
   cicle=0;
 }
 
@@ -209,9 +209,9 @@ void Board::LoadGame(string namefile)
 
 void Board::Move()
 {
-if (score<100000 &&Movements!=0)
+if (score<100000 &&Movements!=0) // Recursive stop in else
 {
-  ShowBoard();
+  ShowBoard(); 
   cout << "Exit the game? 1. Yes 2. Not" << endl;
   int option;
   cin >>option;
@@ -247,6 +247,7 @@ if (score<100000 &&Movements!=0)
   switch(dir)
   {
     int aux;
+    // Movements.txt
     case 'U' : { // To move UP -> Status Complete
       string error;
       error = "\n Movement Failure ";
@@ -759,7 +760,7 @@ if (score<100000 &&Movements!=0)
 } // Finishes Switch
   }
 
-}else if (Movements==0)
+}else if (Movements==0) // Move() finishes and see if the player won or lost 
   {
     cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
   }else if (score>=100000)
@@ -770,7 +771,7 @@ if (score<100000 &&Movements!=0)
 
 } // Finishes Move()
 
-void Board::MatchLine()
+void Board::MatchLine() // Search for match in horizontal way
 {
   x = 0;
   y = 0;
@@ -785,6 +786,7 @@ void Board::MatchLine()
       }
       if (Table[x][y]->getType() == Table[x+1][y]->getType() && Table[x][y]->getType() != 6)
       {
+        // possibleMatchs will receive all the locations where match is happening
         possibleMatchs.push_back(Table[x][y]);
         possibleMatchs.push_back(Table[x+1][y]);
         x++;
@@ -823,7 +825,7 @@ void Board::MatchLine()
   }
 }
 
-void Board::MatchColumn()
+void Board::MatchColumn() // Looking for matches in vertical way. 
 {
   x = 0;
   y = 0;
@@ -876,7 +878,7 @@ void Board::MatchColumn()
   }
 }
 
-void Board::MatchMind(int x, int y)
+void Board::MatchMind(int x, int y) // Special match only for Mindgem // (Other conditions )
 {
   // first Line
   if (y == 0)
@@ -991,10 +993,10 @@ void Board::Match()
 
   for (int x = 0; x<tamano; x++)
   {
-    score += possibleMatchs[x]->getType();
-    possibleMatchs[x]->setType(0);
+    score += possibleMatchs[x]->getType(); // Add type of gem to score counter 
+    possibleMatchs[x]->setType(0); // Then it marks as a 0
   }
-  for(int y = 0; y<7; y++)
+  for(int y = 0; y<7; y++) // Special cases for MindGem
   {
     for(int x = 0; x<7; x++)
     {
@@ -1082,7 +1084,7 @@ void Board::fill(){
     // Clean the vector called possibleMatchs
     //
 
-    possibleMatchs.clear();
+    possibleMatchs.clear(); // Then we clear all the location were match was realised 
     // When it does:
     //Move();
 }

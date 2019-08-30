@@ -36,7 +36,7 @@ int Gem::getType()
 
 void Gem::Lock()
 {
-  mindLock++; 
+  mindLock++; // there's a change between  (unlocked 2) <->  (lock 1)
 }
 
 int Gem::getMind()

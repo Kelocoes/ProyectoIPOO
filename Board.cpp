@@ -760,13 +760,13 @@ if (score<100000 &&Movements!=0) // Recursive stop in else
 } // Finishes Switch
   }
 
-}else if (Movements==0) // Move() finishes and see if the player won or lost 
-  {
-    cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
-  }else if (score>=100000)
+}else if (score>=100000)
     {
       cout <<"\nYOU WIN. ¡CONGRATULATIONS!, RESTART THE GAME TO PLAY AGAIN \n" << endl;
-    }
+    }else if (Movements==0) // Move() finishes and see if the player won or lost 
+  {
+    cout << "\nYOU LOSE, RESTART THE GAME TO PLAY AGAIN \n" << endl;
+  }
 
 
 } // Finishes Move()
